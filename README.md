@@ -5,7 +5,7 @@
     api/
     <ul>
       <li>
-        EmaLog API
+        <a href="https://github.com/AM-Solutions23/WebApp/tree/master/api#emalog-api" >EmaLog API </a>
       </li>
     </ul>
    </li>
