@@ -15,4 +15,5 @@ router.get('/empresa/:empresa_id', middleware.authUser,empresa_controllers.getOn
 router.post('/empresa', [middleware.validateRequestBody,middleware.authUser], empresa_controllers.newEmpresa)
 router.put('/empresa/:empresa_id', [middleware.validateRequestBody,middleware.authUser], empresa_controllers.updateEmpresa)
 router.delete('/empresa/:empresa_id', middleware.authUser, empresa_controllers.deleteEmpresa)
+
 module.exports = router
