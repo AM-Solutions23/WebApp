@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken')
  * @returns jwt_token
  */
 exports.createNewToken = (payload) => {
-    var doc = {
+    let doc = {
         userID: payload
     }
     const token = jwt.sign(doc, process.env.SECRET_KEY , {expiresIn: "10h"})
@@ -23,7 +23,7 @@ exports.createNewToken = (payload) => {
  * @returns boolean || jwt_token_data
  */
 exports.verifyToken = (token) => {
-    var verifier = jwt.verify(token,process.env.SECRET_KEY, (err, decoded_data) =>{
+    let verifier = jwt.verify(token,process.env.SECRET_KEY, (err, decoded_data) =>{
         if(err){
             return false
         }

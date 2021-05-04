@@ -12,12 +12,10 @@
 const initModels = require('../models/init-models')
 const db = require('../../database/connect')
 
-var models = initModels(db)
+let models = initModels(db)
 
 /**
  * Fetchs all data from Empresa
- * @param req 
- * @param  res 
  * @returns Multi models.Empresa
  */
 exports.getAll = async() =>{
@@ -40,12 +38,12 @@ exports.getOneById = async(ID) => {
  * 
  * Create new user 
  * @param data (CNPJ, nome, password) 
- * @returns 
+ * @returns boolean
  */
 exports.createNewEmpresa = async(data) => {
-    var inserted = true
+    let inserted = true
     try{
-        const new_empresa = await models.Empresa.create({
+        await models.Empresa.create({
             CNPJ: data.CNPJ,
             nome: data.nome,
             password: data.password,
@@ -59,11 +57,17 @@ exports.createNewEmpresa = async(data) => {
     return inserted
 }
 
+/**
+ * Update a Empresa
+ * @param  empresaID 
+ * @param  data 
+ * @returns boolean
+ */
 exports.editEmpresa = async(empresaID, data) => {
-    var edited = true
+    let edited = true
 
     try{
-        const update_empresa = await models.Empresa.update({
+        await models.Empresa.update({
             CNPJ:   data.CNPJ,
             nome:   data.nome
         }, {
@@ -79,11 +83,17 @@ exports.editEmpresa = async(empresaID, data) => {
     return edited
 }
 
+/**
+ * 
+ * Delete a Empresa
+ * @param empresaID 
+ * @returns boolean
+ */
 exports.deleteEmpresa = async(empresaID) => {
-    var deleted = true
+    let deleted = true
 
     try{
-        const delete_empresa = await models.Empresa.destroy({
+        await models.Empresa.destroy({
             where: {
                 id: empresaID
             }

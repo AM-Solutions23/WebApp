@@ -8,13 +8,13 @@ const token_handler = require('../token/token-handler')
  * @returns next
  */
 exports.authUser = (req, res, next) => {
-    var token = req.headers['authorization']
+    let token = req.headers['authorization']
     if (!token) {
         // If token was not provided
         res.sendStatus(401)
         return false
     }
-    var data_token = token_handler.verifyToken(token.split(' ')[1])
+    let data_token = token_handler.verifyToken(token.split(' ')[1])
     if (!data_token) {
         res.sendStatus(403)
         return false
