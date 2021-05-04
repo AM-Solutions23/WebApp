@@ -37,5 +37,30 @@
             <td> DELETE </td>
             <td> /empresa/:empresa_id </td>
         </tr>
+         <tr>
+            <td> solicitacao_controllers.getAllSolicitacoes </td>
+            <td> GET </td>
+            <td> /solicitacao </td>
+        </tr>
+         <tr>
+            <td> solicitacao_controllers.getOneSolicitacao </td>
+            <td> GET </td>
+            <td> /solicitacao/:solicitacao_id </td>
+        </tr>
+       <tr>
+            <td> solicitacao_controllers.newSolicitacao </td>
+            <td> POST </td>
+            <td> /solicitacao </td>
+        </tr>
+       <tr>
+            <td> solicitacao_controllers.updateSolicitacao </td>
+            <td> PATCH </td>
+            <td> /solicitacao/:solicitacao_id </td>
+        </tr>
+       <tr>
+            <td> solicitacao_controllers.deleteSolicitacao </td>
+            <td> DELETE </td>
+            <td> /solicitacao/:solicitacao_id </td>
+        </tr>
     </tbody>
 </table>
