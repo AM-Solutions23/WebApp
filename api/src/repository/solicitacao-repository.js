@@ -22,16 +22,34 @@ exports.createNewSolicitacao = async(data) => {
     return inserted
 }
 
+/**
+ * Fetchs all data from Solicitacao
+ * 
+ * @returns Multo models.Solicitacao
+ */
 exports.allSolicitacoes = async() => {
     const solicitacoes = await models.Solicitacao.findAll()
     return solicitacoes
 }
 
+/**
+ * Fetchs all data from a Solicitacao by ID
+ * 
+ * @param solicitacaoID 
+ * @returns models.Solicitacao
+ */
 exports.getOneById = async(solicitacaoID) => {
     const solicitacao = await models.Solicitacao.findByPk(solicitacaoID)
     return solicitacao
 }
 
+/**
+ * Update a Solicitacao
+ * 
+ * @param solicitacaoID 
+ * @param data 
+ * @returns 
+ */
 exports.editSolicitacao = async(solicitacaoID, data) => {
     let edited = true
 
@@ -49,6 +67,12 @@ exports.editSolicitacao = async(solicitacaoID, data) => {
     return edited
 }
 
+/**
+ * Delete a Solicitacao
+ * 
+ * @param solicitacaoID 
+ * @returns boolean
+ */
 exports.deleteSolicitacao = async(solicitacaoID) => {
     let deleted = true
 

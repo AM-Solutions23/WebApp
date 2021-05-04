@@ -16,8 +16,6 @@ let models = initModels(db)
 
 /**
  * Fetchs all data from Empresa
- * @param req 
- * @param  res 
  * @returns Multi models.Empresa
  */
 exports.getAll = async() =>{
@@ -59,6 +57,12 @@ exports.createNewEmpresa = async(data) => {
     return inserted
 }
 
+/**
+ * Update a Empresa
+ * @param  empresaID 
+ * @param  data 
+ * @returns boolean
+ */
 exports.editEmpresa = async(empresaID, data) => {
     let edited = true
 
@@ -79,6 +83,12 @@ exports.editEmpresa = async(empresaID, data) => {
     return edited
 }
 
+/**
+ * 
+ * Delete a Empresa
+ * @param empresaID 
+ * @returns boolean
+ */
 exports.deleteEmpresa = async(empresaID) => {
     let deleted = true
 
