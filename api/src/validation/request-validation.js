@@ -5,7 +5,7 @@
  * @returns 
  */
 exports.validate = (fieldsToCheck) => {
-    var valid = true
+    let valid = true
     fieldsToCheck.forEach(field => {
         if(!field){
             valid = false

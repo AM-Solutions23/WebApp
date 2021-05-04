@@ -1,10 +1,10 @@
-var DataTypes = require("sequelize").DataTypes;
-var _Empresa = require("./empresa-model");
-var _Solicitacao = require("./solicitacao-model");
+let DataTypes = require("sequelize").DataTypes;
+let _Empresa = require("./empresa-model");
+let _Solicitacao = require("./solicitacao-model");
 
 function initModels(sequelize) {
-  var Empresa = _Empresa(sequelize, DataTypes);
-  var Solicitacao = _Solicitacao(sequelize, DataTypes);
+  let Empresa = _Empresa(sequelize, DataTypes);
+  let Solicitacao = _Solicitacao(sequelize, DataTypes);
 
 
   return {
