@@ -1,8 +1,7 @@
 const validator = require('../validation/request-validation')
-const solicitacao_repo = require('../repository/solicitacao-repository')
+const solicitacao_repository = require('../repository/solicitacao-repository')
 
-const token_handler = require('../token/token-handler')
-
+const solicitacao_repo = new solicitacao_repository()
 
 exports.newSolicitacao = async (req, res) => {
     let fields = [
@@ -34,7 +33,7 @@ exports.newSolicitacao = async (req, res) => {
         return res.status(400).json({ 'message': 'All fields must be filled.' })
     }
 
-    let created = await solicitacao_repo.createNewSolicitacao(req.body)
+    let created = await solicitacao_repo.createNew(req.body)
     if (!created) {
         return res.status(500).json({ 'message': 'Error creating new Solicitacao.' })
     }
@@ -43,19 +42,19 @@ exports.newSolicitacao = async (req, res) => {
 }
 
 exports.getAllSolicitacoes = async (req, res) => {
-    let solicitacoes = await solicitacao_repo.allSolicitacoes()
+    let solicitacoes = await solicitacao_repo.getAll()
     res.status(200).json(solicitacoes)
 }
 
 exports.getOneSolicitacao = async (req, res) => {
-    let solicitacao = await solicitacao_repo.getOneById(req.params.solicitacao_id)
+    let solicitacao = await solicitacao_repo.getOne(req.params.solicitacao_id)
     res.status(200).json(solicitacao)
 }
 
 exports.updateSolicitacao = async (req, res) => {
 
     let solicitacao_id = req.params.solicitacao_id
-    let edited = await solicitacao_repo.editSolicitacao(solicitacao_id, req.body)
+    let edited = await solicitacao_repo.updateData(solicitacao_id, req.body)
     if (!edited) {
         return res.status(500).json({ 'message': `Error updating Solicitacao with ID ${solicitacao_id}.` })
     }
@@ -65,7 +64,7 @@ exports.updateSolicitacao = async (req, res) => {
 
 exports.deleteSolicitacao = async(req, res) => {
     let solicitacao_id = req.params.solicitacao_id
-    let deleted = await solicitacao_repo.deleteSolicitacao(solicitacao_id)
+    let deleted = await solicitacao_repo.deleteData(solicitacao_id)
     if(!deleted){
         return res.status(500).json({'message':`Error deleting Solicitacao with ID ${solicitacao_id}.`})
     }

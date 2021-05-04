@@ -1,7 +1,10 @@
 const validator = require('../validation/request-validation')
-const empresa_repo = require('../repository/empresa-repository')
+
+const empresa_repository = require('../repository/empresa-repository')
 
 const token_handler = require('../token/token-handler')
+
+let empresa_repo = new empresa_repository()
 
 /**
  * 
@@ -30,7 +33,7 @@ exports.login = async(req, res ) => {
 }
 
 exports.getOne = async(req, res) => {
-    let empresa_data = await empresa_repo.getOneById(req.params.empresa_id)
+    let empresa_data = await empresa_repo.getOne(req.params.empresa_id)
     res.status(200).json(empresa_data)
 }
 
@@ -39,7 +42,7 @@ exports.newEmpresa = async(req, res) => {
         res.status(400).json({'message': 'All fields must be filled.'})
     }
 
-    let created = await empresa_repo.createNewEmpresa(req.body)
+    let created = await empresa_repo.createNew(req.body)
     if(!created){
         return res.status(500).json({'message':'Error creating new Empresa.'})
     }
@@ -49,7 +52,7 @@ exports.newEmpresa = async(req, res) => {
 
 exports.updateEmpresa = async(req, res) => {
     let empresa_id = req.params.empresa_id
-    let edited = await empresa_repo.editEmpresa(empresa_id, req.body)
+    let edited = await empresa_repo.updateData(empresa_id, req.body)
     if(!edited){
         return res.status(500).json({'message':`Error updating Empresa with ID ${empresa_id}.`})
     }
@@ -59,7 +62,7 @@ exports.updateEmpresa = async(req, res) => {
 
 exports.deleteEmpresa = async(req, res) => {
     let empresa_id = req.params.empresa_id
-    let deleted = await empresa_repo.deleteEmpresa(empresa_id)
+    let deleted = await empresa_repo.deleteData(empresa_id)
     if(!deleted){
         return res.status(500).json({'message':`Error deleting Empresa with ID ${empresa_id}.`})
     }
@@ -67,7 +70,9 @@ exports.deleteEmpresa = async(req, res) => {
     res.status(200).json({'message':`Empresa with ID: ${empresa_id} deleted successfully.`})
 }
 
+
 exports.getAllEmpresas = async(req, res) => {
+
     let empresas = await empresa_repo.getAll()
     res.status(200).json(empresas)
 }
