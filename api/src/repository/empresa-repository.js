@@ -4,11 +4,10 @@
  * login password: password
 */
 
-
-// ToDo: Encrypt password
 // ToDo: Reset Password
 
 
+const SecurePassword = require('../tools/password-encrypt')
 const MasterRepository = require('./master-repository')
 
 module.exports = class EmpresaRepository extends MasterRepository {
@@ -26,13 +25,21 @@ module.exports = class EmpresaRepository extends MasterRepository {
     searchLogin = async (user, password) => {
         const empresa = await this.entity.findOne({
             where: {
-                CNPJ: user,
-                password: password
+                CNPJ: user
             }
         })
+
         if (empresa == null) {
             return false
         }
+        
+        const secure_password = new SecurePassword()
+        if(!secure_password.verifyEncryptedPassword(password, empresa.password)){
+            return false
+        }
+        
+        delete empresa.dataValues.password
+
         return empresa
     }
 }

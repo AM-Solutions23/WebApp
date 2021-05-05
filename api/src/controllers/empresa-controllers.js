@@ -4,7 +4,10 @@ const empresa_repository = require('../repository/empresa-repository')
 
 const token_handler = require('../token/token-handler')
 
-let empresa_repo = new empresa_repository()
+const SecurePassword = require('../tools/password-encrypt')
+
+const empresa_repo = new empresa_repository()
+const secure_password = new SecurePassword()
 
 /**
  * 
@@ -21,7 +24,7 @@ exports.login = async(req, res ) => {
     
     let user = req.body.user
     let password = req.body.password
-    
+
     let login_result = await empresa_repo.searchLogin(user,password)
     if(!login_result){
         return res.status(200).json({auth:false,'message':'User/Password incorrect(s).'})
@@ -41,6 +44,11 @@ exports.newEmpresa = async(req, res) => {
     if(!validator.validate([req.body.CNPJ, req.body.nome, req.body.password])){
         res.status(400).json({'message': 'All fields must be filled.'})
     }
+    
+    // * Encrypt password:
+    const hashed_password = secure_password.encryptPassword(req.body.password)
+
+    req.body.password = hashed_password
 
     let created = await empresa_repo.createNew(req.body)
     if(!created){
