@@ -1,0 +1,20 @@
+:root {
+    --grey-default-color: #e8edea;
+}
+#parent-container {
+    margin-top: 4rem;
+    padding: 3rem;
+    border-radius: 2%;
+    box-shadow: 0 0 2em var(--grey-default-color);
+    background-color: white;
+    width: 30rem;
+}
+
+#submitButton{
+    width: 100%;
+    box-shadow:1px 4px 10px #007BFF;
+}
+
+#copyright-info{
+    margin-top: 3rem;
+}
