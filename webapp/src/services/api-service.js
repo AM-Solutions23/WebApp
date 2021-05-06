@@ -18,23 +18,23 @@ class ApiService {
             }).then((response) => {
                 resolve(response)
             }).catch((err) => reject(err))
-            
+
         })
     }
 
-    postDataWithToken(data, endpoint_name, token){
+    postDataWithToken(data, endpoint_name, token) {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'POST',
                 url: endpoints[endpoint_name],
                 data: data,
                 headers: {
-                    'authorization' : `Bearer ${token}`
+                    'authorization': `Bearer ${token}`
                 }
             }).then((response) => {
                 resolve(response.data)
             }).catch((err) => reject(err))
-            
+
         })
     }
 }
