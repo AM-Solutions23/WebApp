@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const empresa_controllers = require('../controllers/empresa-controllers')
 const solicitacao_controllers = require('../controllers/solicitacao-controllers')
+const auth_controller = require('../controllers/auth-controller')
 
 const middleware = require('../middlewares/middleware')
 
@@ -26,4 +27,11 @@ router.get('/solicitacao', middleware.authUser, solicitacao_controllers.getAllSo
 router.get('/solicitacao/:solicitacao_id', middleware.authUser, solicitacao_controllers.getOneSolicitacao)
 router.patch('/solicitacao/:solicitacao_id', [middleware.validateRequestBody, middleware.authUser], solicitacao_controllers.updateSolicitacao)
 router.delete('/solicitacao/:solicitacao_id', middleware.authUser, solicitacao_controllers.deleteSolicitacao)
+
+
+/**
+ * Token Validation route
+ */
+router.post('/token-validation',middleware.authUser,auth_controller.validateToken)
+
 module.exports = router
