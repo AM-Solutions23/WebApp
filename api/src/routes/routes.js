@@ -32,6 +32,6 @@ router.delete('/solicitacao/:solicitacao_id', middleware.authUser, solicitacao_c
 /**
  * Token Validation route
  */
-router.post('/token-validation',middleware.authUser,auth_controller.validateToken)
+router.post('/token-validation',auth_controller.validateToken)
 
 module.exports = router
