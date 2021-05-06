@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const db = require('../database/connect');
+const cors = require('cors')
 
 async function syncDatabase() {
     const result = await db.sync()
@@ -11,6 +12,7 @@ async function syncDatabase() {
     }
 }
 
+app.use(cors())
 app.use(express.json())
 syncDatabase()
 
