@@ -1,11 +1,12 @@
 import React from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 import LoginService from '../services/login-service'
-import '../stylesheet/login.css'
 
+import '../stylesheet/login.css'
 class Login extends React.Component {
     constructor(props) {
         super(props)
+        
         this.state = { user: '', password: '' }
 
         this.handleChange = this.handleChange.bind(this);
@@ -16,19 +17,18 @@ class Login extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     }
     async loginSubmit(event) {
+       
         event.preventDefault()
         const login_service = new LoginService()
-        // *
+    
         let login_result = await login_service.login(this.state)
 
-        //console.log(login_result)
-
-        if(!login_result.auth){
-            // TODO
+        if(login_result){
+            console.log(login_result);
+            this.props.history.push('/dashboard')
         }
 
-        // TODO: goto dashboard
-        // *
+        //TODO: login failed message
     }
 
     render() {
