@@ -1,5 +1,17 @@
 const token_handler = require('../token/token-handler')
 
 exports.validateToken = (req, res) => {
-    res.sendStatus(200)
+    const token = req.headers['authorization']
+
+    if (!token) {
+        return res.sendStatus(401)
+    }
+
+    let data_token = token_handler.verifyToken(token.split(' ')[1])
+    if (!data_token) {
+        return res.status(200).json({auth:false})
+    }
+
+    return res.status(200).json({auth:true})
+
 }
