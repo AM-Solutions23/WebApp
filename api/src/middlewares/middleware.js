@@ -11,13 +11,11 @@ exports.authUser = (req, res, next) => {
     let token = req.headers['authorization']
     if (!token) {
         // If token was not provided
-        res.sendStatus(401)
-        return false
+        return res.sendStatus(401)
     }
     let data_token = token_handler.verifyToken(token.split(' ')[1])
     if (!data_token) {
-        res.sendStatus(403)
-        return false
+        return res.sendStatus(403)
     }
     req.token = data_token
     next()
@@ -30,10 +28,9 @@ exports.authUser = (req, res, next) => {
  * @param next 
  * @returns next
  */
-exports.validateRequestBody = (req, res, next) =>{
-    if(req.body.constructor == Object && Object.keys(req.body).length == 0){
-        res.status(406).json({'message':'This request needs a body. Nothing to proccess.'})
-        return false
+exports.validateRequestBody = (req, res, next) => {
+    if (req.body.constructor == Object && Object.keys(req.body).length == 0) {
+        return res.status(406).json({ 'message': 'This request needs a body. Nothing to proccess.' })
     }
     next()
 }
