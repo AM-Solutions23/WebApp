@@ -1,12 +1,15 @@
 :root{
     --bar-bg: #343a40;
 }
+body{
+    background-color: #ededed;
+}
 #sidenav-bar{
     background-color: var(--bar-bg);
 }
 
-.sidenav---navtext---1AE_f{
-    color:white !important;
+.nav-text{
+    color: white !important;
 }
 
 .sidenav---navicon---3gCRo{
@@ -16,6 +19,7 @@
 #user-button, .card-button{
     background-color: var(--bar-bg);
     border-color: var(--bar-bg);
+    box-shadow:1px 3px 7px var(--bar-bg);
 }
 .card-button:hover, .card-button:focus, .card-button:active{
     background-color: white !important;
@@ -24,11 +28,15 @@
 }
 
 
-#dashboard-content{
+.dashboard-content{
     margin-top: 3rem;
     margin-right: 4rem;
 }
 
 .status-painel{
     margin-top: 1rem;
+}
+
+.info-cards{
+    box-shadow: 2px 4px 12px black;
 }
