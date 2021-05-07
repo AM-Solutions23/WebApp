@@ -11,11 +11,11 @@ class Dashboard extends React.Component {
         return (
             <React.Fragment>
                 <TopbarNav />
-                <SidebarNav />
-                <Container id="dashboard-content">
+                <SidebarNav pageName = 'dashboard' />
+                <Container className="dashboard-content">
                     <Row className="status-painel">
                         <Col>
-                            <Card>
+                            <Card className="info-cards">
                                 <Card.Header>Solicitados</Card.Header>
                                 <Card.Body>
                                     <Card.Title>Todas as solicitações</Card.Title>
@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
                             </Card>
                         </Col>
                         <Col>
-                            <Card>
+                            <Card className="info-cards">
                                 <Card.Header>Em andamento</Card.Header>
                                 <Card.Body>
                                     <Card.Title>Solicitações em andamento</Card.Title>
@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
                             </Card>
                         </Col>
                         <Col>
-                            <Card>
+                            <Card className="info-cards">
                                 <Card.Header>Concluído</Card.Header>
                                 <Card.Body>
                                     <Card.Title>Solicitações concluídas</Card.Title>
@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
                     
                     <Row className="status-painel">
                         <Col>
-                            <Card>
+                            <Card className="info-cards">
                                 <Card.Header>Saving Financeiro nos últimos 12 meses</Card.Header>
                                 <Card.Body>
                                     <Card.Title>Solicitações concluídas</Card.Title>
@@ -59,7 +59,7 @@ class Dashboard extends React.Component {
                             </Card>
                         </Col>
                         <Col>
-                            <Card>
+                            <Card className="info-cards">
                                 <Card.Header>Saving em emissão nos últimos 12 meses</Card.Header>
                                 <Card.Body>
                                     <Card.Title>Solicitações concluídas</Card.Title>

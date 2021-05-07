@@ -1,6 +1,7 @@
 import React from 'react'
-import SideNav, { NavItem, NavIcon, NavText} from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 import '../../stylesheet/dashboard.css'
 class SidebarNav extends React.Component {
@@ -10,12 +11,14 @@ class SidebarNav extends React.Component {
                 <SideNav id="sidenav-bar" onSelect={(selected) => {
                     const to = `/${selected}`
                     console.log(to)
-                    if(window.location.pathname !== to){
-                        this.props.history.push(to)
-                    } 
+                    console.log(window.location.pathname)
+
+                    if (window.location.pathname !== to) {
+                        window.location.href = to
+                    }
                 }}>
                     <SideNav.Toggle />
-                    <SideNav.Nav defaultSelected="dashboard">
+                    <SideNav.Nav defaultSelected={this.props.pageName}>
                         <NavItem eventKey="dashboard" >
                             <NavIcon>
                                 <FontAwesomeIcon icon="home" />
@@ -28,9 +31,18 @@ class SidebarNav extends React.Component {
                             <NavIcon>
                                 <FontAwesomeIcon icon="chart-bar" />
                             </NavIcon>
-                            <NavText>
+                            <NavText className="nav-text">
                                 Painel de controle
                             </NavText>
+                            <NavItem eventKey="painel-de-controle/solicitados">
+                                <NavText>Solicitados</NavText>
+                            </NavItem>
+                            <NavItem eventKey="painel-de-controle/em-andamento">
+                                <NavText>Em andamento</NavText>
+                            </NavItem>
+                            <NavItem eventKey="painel-de-controle/concluido">
+                                <NavText>Concluído</NavText>
+                            </NavItem>
                         </NavItem>
                         <NavItem eventKey="solicitacoes" >
                             <NavIcon>
