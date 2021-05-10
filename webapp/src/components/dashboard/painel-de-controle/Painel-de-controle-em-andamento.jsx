@@ -4,11 +4,11 @@ import SolicitacaoTable from './Solicitacao-table'
 import '../../../stylesheet/dashboard.css'
 import Dashboard from '../Dashboard'
 
-class PainelControleSolicitados extends Dashboard {
+class PainelControleEmAndamento extends Dashboard {
     constructor(props) {
         super(props)
-        this.content = <SolicitacaoTable painelName='Solicitados' />
+        this.content = <SolicitacaoTable painelName='Em andamento' />
     }
 }
 
-export default PainelControleSolicitados
+export default PainelControleEmAndamento

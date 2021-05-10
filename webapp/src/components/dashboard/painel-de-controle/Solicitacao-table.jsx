@@ -9,7 +9,7 @@ class SolicitacaoTable extends React.Component {
                     <h4>{this.props.painelName}</h4>
                 </Container>
                 <hr/>
-                <Table striped bordered hover>
+                <Table striped bordered hover responsive>
                     <thead>
                         <tr>
                             <th>ID</th>

@@ -4,17 +4,6 @@
 body{
     background-color: #ededed;
 }
-#sidenav-bar{
-    background-color: var(--bar-bg);
-}
-
-.nav-text{
-    color: white !important;
-}
-
-.sidenav---navicon---3gCRo{
-    color:white !important;
-}
 
 #user-button, .card-button{
     background-color: var(--bar-bg);
@@ -27,16 +16,18 @@ body{
     border-color: var(--bar-bg) !important;
 }
 
-
 .dashboard-content{
     margin-top: 3rem;
-    margin-right: 4rem;
-}
 
+}
 .status-painel{
     margin-top: 1rem;
 }
 
 .info-cards{
     box-shadow: 2px 4px 12px black;
+}
+
+.custom-nav-link{
+    color: white !important;
 }
