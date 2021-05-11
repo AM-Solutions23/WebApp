@@ -23,9 +23,7 @@ class SolicitacoesContent extends React.Component {
                     </Accordion>
                 </Container>
                 <br />
-                <Container>
                     <SolicitacaoTable painelName='Solicitações' />
-                </Container>
             </React.Fragment>
         )
     }

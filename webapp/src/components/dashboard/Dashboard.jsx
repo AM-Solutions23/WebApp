@@ -3,6 +3,7 @@ import DashboardContent from './DashboardContent'
 import SideNavBar from './SideNavBar/SideNavBar'
 import DashboardIndex from './Dashboard-index'
 
+
 class Dashboard extends React.Component{
     constructor(props){
         super(props)

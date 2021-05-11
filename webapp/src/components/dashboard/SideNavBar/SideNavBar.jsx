@@ -43,6 +43,10 @@ class SideNavBar extends React.Component {
                         <MenuItem icon={<FontAwesomeIcon icon="list-alt" />}>
                             <a href="/solicitacoes">Solicitações</a>
                         </MenuItem>
+                        <hr className='bg-secondary mx-4'/>
+                        <SubMenu title="Fillipe Meireles" icon={<FontAwesomeIcon icon="user-tie" />}>
+                            <MenuItem><a href="/">Ver perfil</a></MenuItem>
+                        </SubMenu>
                     </Menu>
                 </SidebarContent>
                 <SidebarFooter style={{ textAlign: 'center' }}>

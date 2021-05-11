@@ -24,13 +24,13 @@ import Solicitacoes from './components/dashboard/Solicitacoes/Solicitacoes'
 // * Icons
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faHome, faChartBar, faListAlt, faSignOutAlt, faBars, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faChartBar, faListAlt, faSignOutAlt, faBars, faPlus, faUserTie } from '@fortawesome/free-solid-svg-icons'
 
 
 const middleware = new Middleware()
 
 
-library.add(fab, faHome, faChartBar, faListAlt, faSignOutAlt, faBars, faPlus)
+library.add(fab, faHome, faChartBar, faListAlt, faSignOutAlt, faBars, faPlus, faUserTie)
 
 ReactDOM.render(
     <BrowserRouter>
