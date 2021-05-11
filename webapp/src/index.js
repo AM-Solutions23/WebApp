@@ -17,19 +17,20 @@ import Login from './components/Login'
 import Dashboard from './components/dashboard/Dashboard';
 import PainelControleSolicitados from './components/dashboard/painel-de-controle/Painel-de-controle-solicitados'
 import PainelControleEmAndamento from './components/dashboard/painel-de-controle/Painel-de-controle-em-andamento'
+import PainelControleConcluido from './components/dashboard/painel-de-controle/Painel-de-controle-concluido'
+import Solicitacoes from './components/dashboard/Solicitacoes/Solicitacoes'
 
 
 // * Icons
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faHome, faChartBar, faListAlt, faSignOutAlt, faBars } from '@fortawesome/free-solid-svg-icons'
-import PainelControleConcluido from './components/dashboard/painel-de-controle/Painel-de-controle-concluido'
+import { faHome, faChartBar, faListAlt, faSignOutAlt, faBars, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 
 const middleware = new Middleware()
 
 
-library.add(fab, faHome, faChartBar, faListAlt, faSignOutAlt, faBars)
+library.add(fab, faHome, faChartBar, faListAlt, faSignOutAlt, faBars, faPlus)
 
 ReactDOM.render(
     <BrowserRouter>
@@ -40,6 +41,7 @@ ReactDOM.render(
                 <GuardedRoute path="/painel-de-controle/solicitados" exact component={PainelControleSolicitados} meta={{ auth: true }} />
                 <GuardedRoute path="/painel-de-controle/em-andamento" exact component={PainelControleEmAndamento} meta={{ auth: true }} />
                 <GuardedRoute path="/painel-de-controle/concluidos" exact component={PainelControleConcluido} meta={{ auth: true }} />
+                <GuardedRoute path="/solicitacoes" exact component={Solicitacoes} meta={{ auth: true }} />
             </Switch>
         </GuardProvider>
     </BrowserRouter>,

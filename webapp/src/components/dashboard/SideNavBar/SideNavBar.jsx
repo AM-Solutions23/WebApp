@@ -41,7 +41,7 @@ class SideNavBar extends React.Component {
                             <MenuItem><a href="/painel-de-controle/concluidos">Concluídos</a></MenuItem>
                         </SubMenu>
                         <MenuItem icon={<FontAwesomeIcon icon="list-alt" />}>
-                            Solicitações
+                            <a href="/solicitacoes">Solicitações</a>
                         </MenuItem>
                     </Menu>
                 </SidebarContent>
