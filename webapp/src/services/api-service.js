@@ -4,7 +4,8 @@ const api_hostname = 'http://localhost:4000'
 
 const endpoints = {
     'login': api_hostname + '/login',
-    'token-validation': api_hostname + '/token-validation'
+    'token-validation': api_hostname + '/token-validation',
+    'solicitacao': api_hostname + '/solicitacao'
 }
 
 class ApiService {
@@ -35,6 +36,20 @@ class ApiService {
                 resolve(response.data)
             }).catch((err) => reject(err))
 
+        })
+    }
+
+    getDataWithToken(endpoint_name, token) {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'GET',
+                url: endpoints[endpoint_name],
+                headers:{
+                    'authorization': `Bearer ${token}`
+                }
+            }).then((response) => {
+                resolve(response.data)
+            }).catch((err) => reject(err))
         })
     }
 }

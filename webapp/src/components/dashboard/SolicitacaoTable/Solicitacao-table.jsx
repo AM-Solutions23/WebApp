@@ -3,6 +3,7 @@ import { Table, Container } from 'react-bootstrap'
 
 class SolicitacaoTable extends React.Component {
     render() {
+        console.log(this.props.dadosTabela)
         return (
             <React.Fragment>
                 <Container className='table-dashboard-solicitacoes'>
@@ -24,34 +25,17 @@ class SolicitacaoTable extends React.Component {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>10001</td>
-                                <td>2011/04/25</td>
-                                <td>2011/04/25</td>
-                                <td>São Paulo - Sorocaba</td>
-                                <td>Pernambuco - Recife</td>
-                                <td><a href="/">detalhe</a></td>
-                                <td>Em transito</td>
-                            </tr>
-                            <tr>
-                                <td>10001</td>
-                                <td>2011/04/25</td>
-                                <td>2011/04/25</td>
-                                <td>São Paulo - Sorocaba</td>
-                                <td>Pernambuco - Recife</td>
-                                <td><a href="/">detalhe</a></td>
-                                <td>Em transito</td>
-                            </tr>
-                            <tr>
-                                <td>10001</td>
-                                <td>2011/04/25</td>
-                                <td>2011/04/25</td>
-                                <td>São Paulo - Sorocaba</td>
-                                <td>Pernambuco - Recife</td>
-                                <td><a href="/">detalhe</a></td>
-                                <td>Em transito</td>
+                                <td>
+                                    {Object.keys(this.props.dadosTabela).map((keyName, i) => (
+                                        <li className="travelcompany-input" key={i}>
+                                            <span className="input-label">key: {i} Name: {this.props.dadosTabela[keyName]}</span>
+                                        </li>
+                                    ))}
+                                </td>
                             </tr>
                         </tbody>
                     </Table>
+
                 </Container>
             </React.Fragment>
         )

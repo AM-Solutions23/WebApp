@@ -28,7 +28,6 @@ module.exports = class EmpresaRepository extends MasterRepository {
                 CNPJ: user
             }
         })
-
         if (empresa == null) {
             return false
         }

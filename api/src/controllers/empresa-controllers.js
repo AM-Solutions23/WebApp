@@ -21,6 +21,7 @@ exports.login = async(req, res ) => {
     if(!validator.validate([req.body.user, req.body.password])){
         return res.status(400).json({'message': 'All fields must be filled.'})
     }
+
     
     let user = req.body.user
     let password = req.body.password

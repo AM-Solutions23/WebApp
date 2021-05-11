@@ -45,7 +45,7 @@ class SideNavBar extends React.Component {
                         </MenuItem>
                         <hr className='bg-secondary mx-4'/>
                         <SubMenu title="Fillipe Meireles" icon={<FontAwesomeIcon icon="user-tie" />}>
-                            <MenuItem><a href="/">Ver perfil</a></MenuItem>
+                            <MenuItem><a href="/perfil">Ver perfil</a></MenuItem>
                         </SubMenu>
                     </Menu>
                 </SidebarContent>

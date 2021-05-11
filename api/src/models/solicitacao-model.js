@@ -15,11 +15,23 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
-    data_entrega: {
+    data_entrega_prevista: {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
+    data_entrega: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
     local_coleta: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    local_entrega: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    n_telefone_destinatario: {
       type: DataTypes.TEXT,
       allowNull: false
     },
@@ -37,11 +49,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     tempo_total: {
       type: DataTypes.STRING(100),
-      allowNull: false
+      allowNull: true
     },
     kilometragem_percorrida: {
       type: DataTypes.STRING(80),
-      allowNull: false
+      allowNull: true
     },
     valor_nota_fiscal: {
       type: DataTypes.STRING(100),

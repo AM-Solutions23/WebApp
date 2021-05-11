@@ -39,12 +39,12 @@ class Login extends React.Component {
                         <p className="text-center">EmaLog</p>
                         <Form.Group controlId="formCNPJ">
                             <Form.Label>CNPJ</Form.Label>
-                            <Form.Control name="user" type="text" placeholder="XX. XXX. XXX/0001-XX" value={this.state.value} onChange={this.handleChange} />
+                            <Form.Control name="user" type="text" placeholder="XX. XXX. XXX/0001-XX" value={this.state.user} onChange={this.handleChange} />
                         </Form.Group>
 
                         <Form.Group controlId="formPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control name="password" type="password" placeholder="Password" value={this.state.value2} onChange={this.handleChange} />
+                            <Form.Control name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} />
                         </Form.Group>
                         <Button id="submitButton" variant="primary" type="submit"> LOG IN</Button>
                     </Form>

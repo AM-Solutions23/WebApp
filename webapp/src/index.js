@@ -25,6 +25,7 @@ import Solicitacoes from './components/dashboard/Solicitacoes/Solicitacoes'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faHome, faChartBar, faListAlt, faSignOutAlt, faBars, faPlus, faUserTie } from '@fortawesome/free-solid-svg-icons'
+import PerfilUsuario from './components/dashboard/Perfil-usuario/PerfilUsuario'
 
 
 const middleware = new Middleware()
@@ -42,6 +43,7 @@ ReactDOM.render(
                 <GuardedRoute path="/painel-de-controle/em-andamento" exact component={PainelControleEmAndamento} meta={{ auth: true }} />
                 <GuardedRoute path="/painel-de-controle/concluidos" exact component={PainelControleConcluido} meta={{ auth: true }} />
                 <GuardedRoute path="/solicitacoes" exact component={Solicitacoes} meta={{ auth: true }} />
+                <GuardedRoute path="/perfil" exact component={PerfilUsuario} meta={{ auth: true }} />
             </Switch>
         </GuardProvider>
     </BrowserRouter>,

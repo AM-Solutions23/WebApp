@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.bulkInsert('Empresa', [{
       nome: 'root',
       password: '123456',
-      CNPJ: 'XX. XXX. XXX/0001-XX'
+      CNPJ: '00000'
     }], {});
 
   },
