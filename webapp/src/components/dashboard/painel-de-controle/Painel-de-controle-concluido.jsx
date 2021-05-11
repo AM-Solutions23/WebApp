@@ -1,5 +1,5 @@
 import React from 'react'
-import SolicitacaoTable from './Solicitacao-table'
+import SolicitacaoTable from '../SolicitacaoTable/Solicitacao-table'
 import Dashboard from '../Dashboard'
 
 class PainelControleConcluido extends Dashboard {
