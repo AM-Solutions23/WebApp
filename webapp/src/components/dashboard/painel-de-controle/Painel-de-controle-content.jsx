@@ -1,7 +1,8 @@
 import React from 'react'
 import SolicitacaoService from '../../../services/solicitacao-service'
-import SolicitacaoTable from '../SolicitacaoTable/Solicitacao-table'
-
+import SolicitacaoConcluidaTable from '../SolicitacaoTable/SolicitacaoConcluida-table'
+import SolicitacaoEmAndamento from '../SolicitacaoTable/SolicitacaoEmAndamento-table'
+import SolicitacaoSolicitadaTable from '../SolicitacaoTable/SolicitacaoSolicitada-table'
 class PainelControleContent extends React.Component {
     constructor(props) {
         super(props)
@@ -9,6 +10,11 @@ class PainelControleContent extends React.Component {
             allSolicitacoes: []
         }
 
+        this.pageComponents = {
+            'Concluídos': SolicitacaoConcluidaTable,
+            'Solicitados': SolicitacaoSolicitadaTable,
+            'Em andamento': SolicitacaoEmAndamento
+        }
     }
     componentDidMount() {
 
@@ -19,6 +25,7 @@ class PainelControleContent extends React.Component {
             'Solicitados': solicitacoes_service.todasSolicitacoesPorStatus('solicitados')
         }
 
+
         this.pageTypes[this.props.pageType].then(response => {
             this.setState({
                 allSolicitacoes: response
@@ -27,8 +34,12 @@ class PainelControleContent extends React.Component {
     }
 
     render() {
+        const TableComponent = this.pageComponents[this.props.pageType]
+
         return (
-            <SolicitacaoTable painelName={this.props.pageType} dadosTabela={this.state.allSolicitacoes} />
+            <React.Fragment>
+                < TableComponent dadosTabela={this.state.allSolicitacoes} />
+            </React.Fragment>
         )
     }
 }
