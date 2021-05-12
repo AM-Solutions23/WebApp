@@ -5,7 +5,8 @@ const api_hostname = 'http://localhost:4000'
 const endpoints = {
     'login': api_hostname + '/login',
     'token-validation': api_hostname + '/token-validation',
-    'solicitacao': api_hostname + '/solicitacao'
+    'solicitacao': api_hostname + '/solicitacao',
+    'solicitacao_por_status': api_hostname + '/solicitacao/status'
 }
 
 class ApiService {
@@ -39,12 +40,37 @@ class ApiService {
         })
     }
 
-    getDataWithToken(endpoint_name, token) {
+    getDataWithToken(endpoint_name, token, payload = '') {
+        let url = endpoints[endpoint_name]
+        if (payload !== '') {
+            url = `${url}/${payload}`
+        }
+
         return new Promise((resolve, reject) => {
             axios({
                 method: 'GET',
-                url: endpoints[endpoint_name],
-                headers:{
+                url: url,
+                headers: {
+                    'authorization': `Bearer ${token}`
+                }
+            }).then((response) => {
+                resolve(response.data)
+            }).catch((err) => reject(err))
+        })
+    }
+
+    putDataWithToken(endpoint_name, token, payload = '', data) {
+        let url = endpoints[endpoint_name]
+        if (payload !== '') {
+            url = `${url}/${payload}`
+        }
+
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'PUT',
+                url: url,
+                data: data,
+                headers: {
                     'authorization': `Bearer ${token}`
                 }
             }).then((response) => {

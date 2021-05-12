@@ -14,9 +14,9 @@ class PainelControleContent extends React.Component {
 
         const solicitacoes_service = new SolicitacaoService()
         this.pageTypes = {
-            'Concluídos': solicitacoes_service.todasSolicitacoes(),
-            'Em andamento': solicitacoes_service.todasSolicitacoes(),
-            'Solicitados': solicitacoes_service.todasSolicitacoes()
+            'Concluídos': solicitacoes_service.todasSolicitacoesPorStatus('entregue'),
+            'Em andamento': solicitacoes_service.todasSolicitacoesPorStatus('em-andamento'),
+            'Solicitados': solicitacoes_service.todasSolicitacoesPorStatus('solicitados')
         }
 
         this.pageTypes[this.props.pageType].then(response => {

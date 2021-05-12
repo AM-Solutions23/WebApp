@@ -5,7 +5,7 @@ import SolicitacoesContent from './Solicitacoes-content'
 class Solicitacoes extends Dashboard{
     constructor(props){
         super(props)
-        this.content = <SolicitacoesContent />
+        this.content = <SolicitacoesContent history={this.props.history}/>
     }
 }
 

@@ -25,9 +25,9 @@ router.delete('/empresa/:empresa_id', middleware.authUser, empresa_controllers.d
 router.post('/solicitacao', [middleware.validateRequestBody, middleware.authUser], solicitacao_controllers.newSolicitacao)
 router.get('/solicitacao', middleware.authUser, solicitacao_controllers.getAllSolicitacoes)
 router.get('/solicitacao/:solicitacao_id', middleware.authUser, solicitacao_controllers.getOneSolicitacao)
-router.patch('/solicitacao/:solicitacao_id', [middleware.validateRequestBody, middleware.authUser], solicitacao_controllers.updateSolicitacao)
+router.put('/solicitacao/:solicitacao_id', [middleware.validateRequestBody, middleware.authUser], solicitacao_controllers.updateSolicitacao)
 router.delete('/solicitacao/:solicitacao_id', middleware.authUser, solicitacao_controllers.deleteSolicitacao)
-
+router.get('/solicitacao/status/:status', solicitacao_controllers.getAllSolicitacoesByStatus)
 
 /**
  * Token Validation route

@@ -53,3 +53,12 @@ body{
 #pie-chart-custom{
     width:12rem;
 }
+
+.pencil-edit:hover{
+    cursor: pointer;
+    color: var(--bar-bg);
+}
+
+.custom-modal{
+    background-color: transparent !important;
+}

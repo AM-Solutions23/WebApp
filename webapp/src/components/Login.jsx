@@ -24,7 +24,6 @@ class Login extends React.Component {
         let login_result = await login_service.login(this.state)
 
         if(login_result){
-            console.log(login_result);
             this.props.history.push('/dashboard')
         }
 

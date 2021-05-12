@@ -28,7 +28,7 @@ class CadastroSolicitacaoForm extends React.Component {
             categoria_da_carga: '',
             descricao_da_carga: '',
             valor_nota_fiscal: '',
-            status: 'solicitados'
+            status: 'solicitado'
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -43,7 +43,14 @@ class CadastroSolicitacaoForm extends React.Component {
         event.preventDefault()
         
         const solicitacao_service = new SolicitacaoService()
-        await solicitacao_service.createSolicitacao(this.state)
+        const cadastro_result  = await solicitacao_service.createSolicitacao(this.state)
+        console.log(cadastro_result)
+        if(cadastro_result){
+            window.location.reload()
+        }
+        // TODO: Error Message
+
+
     }
     render() {
         return (

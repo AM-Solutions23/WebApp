@@ -32,7 +32,7 @@ class SolicitacoesContent extends React.Component {
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="0">
-                                <Card.Body><CadastroSolicitacaoForm /></Card.Body>
+                                <Card.Body><CadastroSolicitacaoForm history={this.props.history} /></Card.Body>
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>

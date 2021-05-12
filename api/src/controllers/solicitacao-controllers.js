@@ -27,17 +27,34 @@ exports.newSolicitacao = async (req, res) => {
         req.body.CNPJ_remetente,
         req.body.inscricao_estadual_remetente
     ]
+    
+    let allowed_status = [
+        'solicitado',
+        'em-andamento',
+        'entregue'
+    ]
+
+    let allowed = false
+    allowed_status.forEach(status => {
+        if(req.body.status == status){
+            allowed = true
+        }
+    });
+
+    if(allowed == false){
+        return res.status(400).json({ 'created': false,'message': 'Not allowed status.' })
+    }
 
     if (!validator.validate(fields)) {
-        return res.status(400).json({ 'message': 'All fields must be filled.' })
+        return res.status(400).json({ 'created': false,'message': 'All fields must be filled.' })
     }
 
     let created = await solicitacao_repo.createNew(req.body)
     if (!created) {
-        return res.status(500).json({ 'message': 'Error creating new Solicitacao.' })
+        return res.status(500).json({ 'created': false,'message': 'Error creating new Solicitacao.' })
     }
 
-    res.status(201).json({ 'message': 'New Solicitacao created successfully.' })
+    res.status(201).json({ 'created': true,'message': 'New Solicitacao created successfully.' })
 }
 
 exports.getAllSolicitacoes = async (req, res) => {
@@ -55,10 +72,10 @@ exports.updateSolicitacao = async (req, res) => {
     let solicitacao_id = req.params.solicitacao_id
     let edited = await solicitacao_repo.updateData(solicitacao_id, req.body)
     if (!edited) {
-        return res.status(500).json({ 'message': `Error updating Solicitacao with ID ${solicitacao_id}.` })
+        return res.status(500).json({ 'updated': false,'message': `Error updating Solicitacao with ID ${solicitacao_id}.` })
     }
 
-    res.status(201).json({ 'message': `Solicitacao with ID: ${solicitacao_id} updated successfully.` })
+    res.status(201).json({ 'updated': true,'message': `Solicitacao with ID: ${solicitacao_id} updated successfully.` })
 }
 
 exports.deleteSolicitacao = async(req, res) => {
@@ -69,4 +86,10 @@ exports.deleteSolicitacao = async(req, res) => {
     }
 
     res.status(200).json({'message':`Solicitacao with ID: ${solicitacao_id} deleted successfully.`})
+}
+
+exports.getAllSolicitacoesByStatus = async (req, res) => {
+    let status = req.params.status
+    let solicitacoes = await solicitacao_repo.searchSolicitacaoByStatus(status)
+    res.json(solicitacoes)
 }
