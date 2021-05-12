@@ -9,14 +9,16 @@ class SolicitacoesContent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            allSolicitacoes: {}
+            allSolicitacoes: []
         }
     }
-    async getAllSolicitacoes() {
+    componentDidMount() {
         const solicitacoes_service = new SolicitacaoService()
-        const response = await solicitacoes_service.todasSolicitacoes()
-        return response
-
+        solicitacoes_service.todasSolicitacoes().then(response => {
+            this.setState({
+                allSolicitacoes: response
+            })
+        })
     }
     render() {
         return (
@@ -36,7 +38,7 @@ class SolicitacoesContent extends React.Component {
                     </Accordion>
                 </Container>
                 <br />
-                <SolicitacaoTable painelName='Solicitações' dadosTabela={this.getAllSolicitacoes()} />
+                <SolicitacaoTable painelName='Solicitações' dadosTabela={this.state.allSolicitacoes} />
             </React.Fragment>
         )
     }

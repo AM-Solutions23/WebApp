@@ -1,11 +1,11 @@
 import React from 'react'
-import SolicitacaoTable from '../SolicitacaoTable/Solicitacao-table'
 import Dashboard from '../Dashboard'
+import PainelControleContent from './Painel-de-controle-content'
 
 class PainelControleConcluido extends Dashboard {
     constructor(props) {
         super(props)
-        this.content = <SolicitacaoTable painelName='Concluídos' />
+        this.content = <PainelControleContent pageType = 'Concluídos' />
     }
 }
 

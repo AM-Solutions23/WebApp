@@ -3,7 +3,6 @@ import { Table, Container } from 'react-bootstrap'
 
 class SolicitacaoTable extends React.Component {
     render() {
-        console.log(this.props.dadosTabela)
         return (
             <React.Fragment>
                 <Container className='table-dashboard-solicitacoes'>
@@ -24,15 +23,31 @@ class SolicitacaoTable extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    {Object.keys(this.props.dadosTabela).map((keyName, i) => (
-                                        <li className="travelcompany-input" key={i}>
-                                            <span className="input-label">key: {i} Name: {this.props.dadosTabela[keyName]}</span>
-                                        </li>
-                                    ))}
-                                </td>
-                            </tr>
+                            {this.props.dadosTabela.map((solicitacao, index) =>
+                                <tr>
+                                    <td>
+                                        {solicitacao.id}
+                                    </td>
+                                    <td>
+                                        {solicitacao.data_coleta}
+                                    </td>
+                                    <td>
+                                        {solicitacao.data_entrega_prevista}
+                                    </td>
+                                    <td>
+                                        {solicitacao.local_coleta}
+                                    </td>
+                                    <td>
+                                        {solicitacao.local_entrega}
+                                    </td>
+                                    <td>
+                                        <a href="/">detalhes</a>
+                                    </td>
+                                    <td>
+                                        {solicitacao.status}
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </Table>
 

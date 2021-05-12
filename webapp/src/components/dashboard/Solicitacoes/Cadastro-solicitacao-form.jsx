@@ -43,7 +43,7 @@ class CadastroSolicitacaoForm extends React.Component {
         event.preventDefault()
         
         const solicitacao_service = new SolicitacaoService()
-        const cadastro_result = await solicitacao_service.createSolicitacao(this.state)
+        await solicitacao_service.createSolicitacao(this.state)
     }
     render() {
         return (
