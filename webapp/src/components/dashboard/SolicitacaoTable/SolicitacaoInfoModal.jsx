@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Table, Button, Modal, Form, Col } from 'react-bootstrap'
+import { Container, Form, Col } from 'react-bootstrap'
 class SolicitacaoInfoTable extends React.Component {
     render() {
         return (

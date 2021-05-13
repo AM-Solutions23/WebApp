@@ -42,6 +42,7 @@ class CadastroSolicitacaoForm extends React.Component {
     async cadastroSubmit(event) {
         event.preventDefault()
         
+        console.log(this.state.data_solicitacao)
         const solicitacao_service = new SolicitacaoService()
         const cadastro_result  = await solicitacao_service.createSolicitacao(this.state)
         console.log(cadastro_result)

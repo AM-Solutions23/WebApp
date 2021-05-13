@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Table, Button, Modal, Form, Col } from 'react-bootstrap'
-import SolicitacaoInfoTable from './SolicitacaoInfoModal'
+
 
 class SolicitacaoSolicitadaTable extends React.Component {
     constructor(props) {

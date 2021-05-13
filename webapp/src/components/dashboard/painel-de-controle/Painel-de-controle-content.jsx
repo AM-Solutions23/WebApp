@@ -22,7 +22,7 @@ class PainelControleContent extends React.Component {
         this.pageTypes = {
             'Concluídos': solicitacoes_service.todasSolicitacoesPorStatus('entregue'),
             'Em andamento': solicitacoes_service.todasSolicitacoesPorStatus('em-andamento'),
-            'Solicitados': solicitacoes_service.todasSolicitacoesPorStatus('solicitados')
+            'Solicitados': solicitacoes_service.todasSolicitacoesPorStatus('solicitado')
         }
 
 
