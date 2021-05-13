@@ -93,3 +93,11 @@ exports.getAllSolicitacoesByStatus = async (req, res) => {
     let solicitacoes = await solicitacao_repo.searchSolicitacaoByStatus(status)
     res.json(solicitacoes)
 }
+exports.estatisticasSolicitacoes = async(req, res) => {
+    let estatisticas = await solicitacao_repo.estatisticasSolicitacoes()
+    res.status(200).json({
+        'solicitado': estatisticas[0],
+        'em-andamento': estatisticas[1],
+        'entregue': estatisticas[2]
+    })
+}
