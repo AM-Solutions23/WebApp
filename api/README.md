@@ -62,5 +62,25 @@
             <td> DELETE </td>
             <td> /solicitacao/:solicitacao_id </td>
         </tr>
+        <tr>
+            <td> solicitacao_controllers.getAllSolicitacoesByStatus </td>
+            <td> GET </td>
+            <td> /solicitacao/status/:status </td>
+        </tr>
+        <tr>
+            <td> solicitacao_controllers.estatisticasSolicitacoes </td>
+            <td> GET </td>
+            <td> /solicitacao-estatisticas </td>
+        </tr>
+        <tr>
+            <td> auth_controller.validateToken </td>
+            <td> POST </td>
+            <td> /token-validation </td>
+        </tr>
+        <tr>
+            <td> api_status_controller.apiStatus </td>
+            <td> GET </td>
+            <td> /api-status </td>
+        </tr>
     </tbody>
 </table>
