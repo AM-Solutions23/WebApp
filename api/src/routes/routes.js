@@ -29,6 +29,8 @@ router.put('/solicitacao/:solicitacao_id', [middleware.validateRequestBody, midd
 router.delete('/solicitacao/:solicitacao_id', middleware.authUser, solicitacao_controllers.deleteSolicitacao)
 router.get('/solicitacao/status/:status', middleware.authUser, solicitacao_controllers.getAllSolicitacoesByStatus)
 router.get('/solicitacao-estatisticas', middleware.authUser, solicitacao_controllers.estatisticasSolicitacoes)
+
+
 /**
  * Token Validation route
  */
