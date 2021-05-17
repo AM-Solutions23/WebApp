@@ -1,12 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
-import sidebarBg from '../../../assets/bg1.jpg';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar'; import 'react-pro-sidebar/dist/css/styles.css';
+import { Button } from 'react-bootstrap'
 import BackgroudImg from '../../../img/backgroundImg.jpg'
 import Logo from '../../../img/logo.jpg';
+import LoginService from '../../../services/login-service';
 
 class SideNavBar extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.logout = this.logout.bind(this)
+    }
+    logout() {
+        const login_service = new LoginService()
+        login_service.logout()
+        window.location.reload()
+    }
 
     render() {
         return (
@@ -19,7 +29,7 @@ class SideNavBar extends React.Component {
                 <SidebarHeader>
                     <div
                         style={{
-                            padding: '0',                            
+                            padding: '0',
                             letterSpacing: '1px',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
@@ -42,7 +52,7 @@ class SideNavBar extends React.Component {
                         <MenuItem icon={<FontAwesomeIcon icon="list-alt" />}>
                             <a href="/solicitacoes">Solicitações</a>
                         </MenuItem>
-                        <hr className='bg-secondary mx-4'/>
+                        <hr className='bg-secondary mx-4' />
                         <SubMenu title="Karimem Cavalcante" icon={<FontAwesomeIcon icon="user-tie" />}>
                             <MenuItem><a href="/perfil">Ver perfil</a></MenuItem>
                         </SubMenu>
@@ -50,10 +60,10 @@ class SideNavBar extends React.Component {
                 </SidebarContent>
                 <SidebarFooter style={{ textAlign: 'center' }}>
                     <div className="sidebar-btn-wrapper">
-                        <a href="/" className="sidebar-btn">
+                        <Button className="sidebar-btn" onClick={this.logout}>
                             <span>Sair</span>
                             <FontAwesomeIcon icon="sign-out-alt" />
-                        </a>
+                        </Button>
                     </div>
                 </SidebarFooter>
             </ProSidebar>

@@ -3,6 +3,7 @@ import React from 'react'
 import { Table, Container, Modal, Button, Form, Col } from 'react-bootstrap'
 import SolicitacaoService from '../../../services/solicitacao-service'
 
+
 import '../../../stylesheet/dashboard.css'
 class SolicitacaoTable extends React.Component {
     constructor(props) {
@@ -47,10 +48,9 @@ class SolicitacaoTable extends React.Component {
 
     async editarSubmit(event) {
         event.preventDefault()
-
         const solicitacao_service = new SolicitacaoService()
         const editResult = await solicitacao_service.editarSolicitacao(this.state.activeItem, this.state.activeItem.id)
-        if(editResult){
+        if (editResult) {
             window.location.reload()
         }
         // TODO: Error Message
@@ -72,7 +72,6 @@ class SolicitacaoTable extends React.Component {
                                 <th>Data Entrega Prevista</th>
                                 <th>Local Coleta</th>
                                 <th>Local Entrega</th>
-                                <th>Detalhe Pedido</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -95,11 +94,9 @@ class SolicitacaoTable extends React.Component {
                                         {solicitacao.local_entrega}
                                     </td>
                                     <td>
-                                        <a href="/">detalhes</a>
-                                    </td>
-                                    <td>
                                         {(solicitacao.status.charAt(0).toUpperCase() + solicitacao.status.slice(1)).replace('-', ' ')}
                                     </td>
+                                    <td></td>
                                     <td>
                                         <FontAwesomeIcon icon='pencil-alt' className='pencil-edit' onClick={() => this.handleModal(solicitacao)} />
                                         <Modal size='lg' show={this.state.showModal} backdropClassName='custom-modal' onHide={this.handleCloseModal}>
@@ -218,6 +215,21 @@ class SolicitacaoTable extends React.Component {
                                                         <Col>
                                                             <Form.Label>Valor Nota Fiscal</Form.Label>
                                                             <Form.Control type="text" placeholder="Valor na nota fiscal" name="valor_nota_fiscal" value={this.state.activeItem.valor_nota_fiscal} onChange={this.handleChange} />
+                                                        </Col>
+                                                    </Form.Row>
+                                                    <hr />
+                                                    <p className='text-muted'><i>Status</i></p>
+                                                    <Form.Row id="carga-form-section.1">
+                                                        <Col>
+                                                            <Form.Group>
+                                                                <Form.Label>Status</Form.Label>
+                                                                <Form.Control as="select" name="status" onChange={this.handleChange}>
+                                                                    <option>Mudar status da solicitação</option>
+                                                                    <option value='solicitado'>Solicitado</option>
+                                                                    <option value='em-andamento'>Em andamento</option>
+                                                                    <option value='entregue'>Entregue</option>
+                                                                </Form.Control>
+                                                            </Form.Group>
                                                         </Col>
                                                     </Form.Row>
                                                     <Button variant="primary" type="submit">Salvar</Button>
