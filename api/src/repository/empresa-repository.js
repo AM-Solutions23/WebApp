@@ -32,10 +32,10 @@ module.exports = class EmpresaRepository extends MasterRepository {
             return false
         }
         
-        //const secure_password = new SecurePassword()
-        //if(!secure_password.verifyEncryptedPassword(password, empresa.password)){
-        //    return false
-        //}
+        const secure_password = new SecurePassword()
+        if(!secure_password.verifyEncryptedPassword(password, empresa.password)){
+            return false
+        }
         
         delete empresa.dataValues.password
 
