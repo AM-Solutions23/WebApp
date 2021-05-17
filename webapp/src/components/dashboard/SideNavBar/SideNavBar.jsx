@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import sidebarBg from '../../../assets/bg1.jpg';
 import BackgroudImg from '../../../img/backgroundImg.jpg'
 import Logo from '../../../img/logo.jpg';
 

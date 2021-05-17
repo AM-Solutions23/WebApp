@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { Container, Accordion, Card, Button } from 'react-bootstrap'
-import styled from 'styled-components'
 import SolicitacaoService from '../../../services/solicitacao-service'
 import SolicitacaoTable from '../SolicitacaoTable/Solicitacao-table'
 import CadastroSolicitacaoForm from './Cadastro-solicitacao-form'
