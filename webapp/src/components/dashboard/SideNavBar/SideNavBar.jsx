@@ -2,7 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import sidebarBg from '../../../assets/bg1.jpg'
+import sidebarBg from '../../../assets/bg1.jpg';
+import BackgroudImg from '../../../img/backgroundImg.jpg'
+import Logo from '../../../img/logo.jpg';
 
 class SideNavBar extends React.Component {
 
@@ -12,22 +14,19 @@ class SideNavBar extends React.Component {
                 breakPoint="md"
                 toggled={this.props.toggled}
                 collapsed={this.props.collapsed}
-                image={sidebarBg}
+                image={BackgroudImg}
                 onToggle={this.props.onToggle}>
                 <SidebarHeader>
                     <div
                         style={{
-                            padding: '24px',
-                            textTransform: 'uppercase',
-                            fontWeight: 'bold',
-                            fontSize: 14,
+                            padding: '0',                            
                             letterSpacing: '1px',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <h3>EmaLog</h3>
+                        <img className="logoPainel" src={Logo} alt="emaLog" />
                     </div>
                 </SidebarHeader>
                 <SidebarContent>
@@ -44,7 +43,7 @@ class SideNavBar extends React.Component {
                             <a href="/solicitacoes">Solicitações</a>
                         </MenuItem>
                         <hr className='bg-secondary mx-4'/>
-                        <SubMenu title="Fillipe Meireles" icon={<FontAwesomeIcon icon="user-tie" />}>
+                        <SubMenu title="Karimem Cavalcante" icon={<FontAwesomeIcon icon="user-tie" />}>
                             <MenuItem><a href="/perfil">Ver perfil</a></MenuItem>
                         </SubMenu>
                     </Menu>

@@ -45,10 +45,10 @@ body {
     align-items: center;
     justify-content: center;
     .sidebar-btn {
-      padding: 1px 15px;
+      padding: 1px 100%;
       border-radius: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #adadad;
+      background: var(--ema-vermelho);
+      color: white;
       text-decoration: none;
       margin: 0 auto;
       height: 35px;

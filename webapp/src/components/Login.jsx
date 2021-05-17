@@ -1,6 +1,8 @@
 import React from 'react'
 import { Form, Container, Button } from 'react-bootstrap'
 import LoginService from '../services/login-service'
+import LogoImg from '../img/logo.jpg'
+
 
 import '../stylesheet/login.css'
 class Login extends React.Component {
@@ -29,13 +31,16 @@ class Login extends React.Component {
 
         //TODO: login failed message
     }
+    
 
     render() {
         return (
             <React.Fragment>
                 <Container id="parent-container">
                     <Form onSubmit={this.loginSubmit}>
-                        <p className="text-center">EmaLog</p>
+                        <div className="containerimg">
+                            <img src={LogoImg} alt="logo" />
+                        </div>                     
                         <Form.Group controlId="formCNPJ">
                             <Form.Label>CNPJ</Form.Label>
                             <Form.Control name="user" type="text" placeholder="XX. XXX. XXX/0001-XX" value={this.state.user} onChange={this.handleChange} />
@@ -58,6 +63,7 @@ class Login extends React.Component {
         );
     }
 }
+
 
 
 export default Login

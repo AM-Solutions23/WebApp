@@ -1,16 +1,23 @@
 :root{
     --bar-bg: #343a40;
+    --ema-amarelo: #FEE252 ;
+    --ema-vermelho: #E61D43;
+    --ema-verde: #04B431;
+    --ema-cinsa-escuro: #1C1C1C;
+    --ema-cinsa-claro: #A4A4A4;
 }
 body{
-    background-color: #ededed;
+    background:var(--bar-bg);
 }
 
 #user-button, .card-button{
-    background-color: var(--bar-bg);
-    border-color: var(--bar-bg);
-    box-shadow:1px 3px 7px var(--bar-bg);
+    background-color: var(--ema-cinsa-escuro);
+    border: none;    
 }
-.card-button:hover, .card-button:focus, .card-button:active{
+.card-button:hover{
+    background: var(--ema-verde);
+}
+.card-button:focus, .card-button:active{
     background-color: white !important;
     color: var(--bar-bg) !important;
     border-color: var(--bar-bg) !important;
@@ -61,4 +68,11 @@ body{
 
 .custom-modal{
     background-color: transparent !important;
+}
+
+.logoPainel{
+    padding: 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 270px;
 }

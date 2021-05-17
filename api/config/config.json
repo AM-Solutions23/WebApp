@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "fillipe",
-    "password": "1234",
-    "database": "emaLog",
+    "username": "root",
+    "password": "",
+    "database": "emalog",
     "host": "localhost",
     "dialect": "mysql"
   },
