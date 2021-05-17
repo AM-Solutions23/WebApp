@@ -3,6 +3,7 @@ import { Card, Button, Container, Row, Col } from 'react-bootstrap'
 import CountUp from 'react-countup'
 import { PieChart } from 'react-minimal-pie-chart'
 
+
 class DashboardIndex extends React.Component {
     render() {
         return (
@@ -68,13 +69,28 @@ class DashboardIndex extends React.Component {
                     </Row>
                     
                 </Container><br />
-                <PieChart 
+                <PieChart
+                        width={100} 
+                        animation
+                        animationDuration={500}
+                        animationEasing="ease-out"
+                        center={[50, 50]}
+                        
                         data={[
-                            { title: 'Solicitados', value: 16, color: 'var(--ema-amarelo)' },
+                            { title: 'Solicitados', value: 30, color: 'var(--ema-amarelo)' },
                             { title: 'Em andamento', value: 15, color: 'var(--ema-vermelho)' },
-                            { title: 'Concluído', value: 20, color: 'var(--ema-cinsa-escuro)' },
+                            { title: 'Concluído', value: 15, color: 'white' },
                         ]}
-                />               
+                        rótulo={true}
+                        labelPosition={50}
+                        lengthAngle={360}
+                        lineWidth={60}
+                        paddingAngle={0}
+                        radius={50}
+                        rounded
+                        startAngle={150}
+                        viewBoxSize={[100, 100]}
+                />         
                 
             </React.Fragment>
             
