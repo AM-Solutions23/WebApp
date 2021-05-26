@@ -9,46 +9,40 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_empresa_distribuicao: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       id_veiculo: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       id_motorista: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       id_cliente: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       id_local_coleta: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       id_local_entrega: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       data_coleta: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: Sequelize.DATE
       },
       data_entrega: {
         type: Sequelize.DATE
       },
+      data_solicitacao: {
+        type: Sequelize.DATE
+      },
       prazo_maximo_entrega: {
-        type: Sequelize.DATE,
-        allowNull: false
+        type: Sequelize.DATE
       },
       valor_nota_fiscal: {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

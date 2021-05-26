@@ -1,21 +1,22 @@
 const MasterRepository = require('./master-repository')
 
-module.exports = class SolicitacaoRepository extends MasterRepository{
-    constructor(){
+
+module.exports = class SolicitacaoRepository extends MasterRepository {
+    constructor() {
         super('solicitacao')
     }
 
-    estatisticas = async() => {
+    estatisticas = async () => {
         const solicitados = await this.entity.findAll({
             where: {
-                'status':'solicitado'
+                'status': 'solicitado'
             },
             limit: 6
         })
 
         const em_andamento = await this.entity.findAll({
             where: {
-                'status':'em-andamento'
+                'status': 'em-andamento'
             },
             limit: 6
         })

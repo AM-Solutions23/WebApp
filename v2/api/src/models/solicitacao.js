@@ -22,9 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     id_local_entrega: DataTypes.INTEGER,
     data_coleta: DataTypes.DATE,
     data_entrega: DataTypes.DATE,
+    data_solicitacao: DataTypes.DATE,
     prazo_maximo_entrega: DataTypes.DATE,
     valor_nota_fiscal: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Solicitacao',

@@ -1,7 +1,6 @@
 const db = require('../models/index')
 
 const entities = {
-    empresa: db.Empresa,
     carga: db.Carga,
     clientes: db.Clientes,
     configuracao: db.Configuracao,
