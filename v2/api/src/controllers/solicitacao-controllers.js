@@ -35,7 +35,11 @@ module.exports = class SolicitacaoControllers extends MasterController {
 
         res.status(201).json({ 'message': `${this.entity} with ID: ${ID} updated successfully.` })
     }
-
+    
+    estatisticasSolicitacoes = async(req, res) => {
+        const estatisticas = await this.repository.estatisticas()
+        res.status(200).json(estatisticas)
+    }
     xmlReader = async(req, res) => {
         console.log(req)
        /*  const xml_in_object = await xmlToObject(req.files.xml)
