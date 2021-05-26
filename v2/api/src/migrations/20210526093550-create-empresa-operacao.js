@@ -11,17 +11,21 @@ module.exports = {
       nome: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique:true
+        unique: true
       },
       email_geral: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique:true
+        unique: true
       },
       cnpj: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique:true
+        unique: true
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       status: {
         type: Sequelize.BOOLEAN

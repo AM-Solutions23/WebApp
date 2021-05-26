@@ -2,7 +2,7 @@ const express = require('express')
 const middleware = require('../middlewares/middlewares')
 
 const router = express.Router()
-const EmpresaControllers = require('../controllers/empresa-controllers')
+
 const CargaControllers = require('../controllers/carga-controllers')
 const ClientesControllers = require('../controllers/clientes-controllers')
 const ConfiguracaoControllers = require('../controllers/clientes-controllers')
@@ -65,7 +65,7 @@ router.get('/empresa-operacao', empresa_operacao_controllers.readAll)
 router.get('/empresa-operacao/:id', empresa_operacao_controllers.readOne)
 router.put('/empresa-operacao/:id', empresa_operacao_controllers.update)
 router.delete('/empresa-operacao/:id', empresa_operacao_controllers.delete)
-
+router.post('/empresa-login',empresa_operacao_controllers.login)
 
 /**
 * * Local Coleta Routes
@@ -107,7 +107,7 @@ router.get('/operador', operador_controllers.readAll)
 router.get('/operador/:id', operador_controllers.readOne)
 router.put('/operador/:id', operador_controllers.update)
 router.delete('/operador/:id', operador_controllers.delete)
-router.post('/operador-login',operador_controllers.login)
+
 
 /**
 * * Solicitacao Routes
