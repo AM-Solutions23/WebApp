@@ -14,13 +14,14 @@ const MotoristaControllers = require('../controllers/motorista-controllers')
 const OperadorControllers = require('../controllers/operador-controllers')
 const SolicitacaoControllers = require('../controllers/solicitacao-controllers')
 const VeiculoControllers = require('../controllers/veiculo-controllers')
+const AuthControllers = require('../controllers/auth-controllers')
 
 /**
  * * Carga Routes
  */
 const carga_controllers = new CargaControllers()
 router.post('/carga', carga_controllers.create)
-router.get('/carga', middleware.authUser, carga_controllers.readAll)
+router.get('/carga', carga_controllers.readAll)
 router.get('/carga/:id', carga_controllers.readOne)
 router.put('/carga/:id', carga_controllers.update)
 router.delete('/carga/:id', carga_controllers.delete)
@@ -106,6 +107,7 @@ router.get('/operador', operador_controllers.readAll)
 router.get('/operador/:id', operador_controllers.readOne)
 router.put('/operador/:id', operador_controllers.update)
 router.delete('/operador/:id', operador_controllers.delete)
+router.post('/operador-login',operador_controllers.login)
 
 /**
 * * Solicitacao Routes
@@ -117,6 +119,7 @@ router.get('/solicitacao/:id', solicitacao_controllers.readOne)
 router.put('/solicitacao/:id', solicitacao_controllers.update)
 router.delete('/solicitacao/:id', solicitacao_controllers.delete)
 router.patch('/solicitacao-status/:id', solicitacao_controllers.updateStatus)
+router.post('/solicitacao-xml', solicitacao_controllers.xmlReader)
 /**
 * * Veiculo Routes
 */
@@ -128,18 +131,10 @@ router.put('/veiculo/:id', veiculo_controllers.update)
 router.delete('/veiculo/:id', veiculo_controllers.delete)
 
 
-
-
 /**
- * * Empresa Routes
+ * * Token Validation Route
  */
-const empresa_controller = new EmpresaControllers()
-
-router.post('/empresa', empresa_controller.create)
-router.get('/empresa', empresa_controller.readAll)
-router.get('/empresa/:id', empresa_controller.readOne)
-router.put('/empresa/:id', empresa_controller.update)
-router.delete('/empresa/:id', empresa_controller.delete)
-
+const auth_controllers = new AuthControllers()
+router.post('/token-validation', auth_controllers.validateToken)
 
 module.exports = router

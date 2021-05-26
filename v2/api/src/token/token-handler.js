@@ -10,7 +10,8 @@ const jwt = require('jsonwebtoken')
  */
 exports.createNewToken = (payload) => {
     let doc = {
-        userID: payload
+        userID: payload.userID,
+        empresaID:payload.empresaID
     }
     const token = jwt.sign(doc, process.env.SECRET_KEY , {expiresIn: "10h"})
     return token

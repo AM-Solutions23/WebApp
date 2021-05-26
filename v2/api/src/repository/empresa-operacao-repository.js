@@ -4,4 +4,5 @@ module.exports = class EmpresaOperacaoRepository extends MasterRepository{
     constructor(){
         super('empresaoperacao')
     }
+    
 }

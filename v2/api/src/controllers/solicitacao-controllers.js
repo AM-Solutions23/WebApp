@@ -1,3 +1,4 @@
+const { xmlToObject } = require("../tools/xml-handler");
 const MasterController = require("./master-controller");
 
 module.exports = class SolicitacaoControllers extends MasterController {
@@ -33,5 +34,14 @@ module.exports = class SolicitacaoControllers extends MasterController {
         }
 
         res.status(201).json({ 'message': `${this.entity} with ID: ${ID} updated successfully.` })
+    }
+
+    xmlReader = async(req, res) => {
+        console.log(req)
+       /*  const xml_in_object = await xmlToObject(req.files.xml)
+
+        console.log(xml_in_object) */
+        
+        res.sendStatus(200)
     }
 }
