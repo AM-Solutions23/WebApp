@@ -50,7 +50,7 @@ class SolicitacaoTable extends React.Component {
 
         const solicitacao_service = new SolicitacaoService()
         const editResult = await solicitacao_service.editarSolicitacao(this.state.activeItem, this.state.activeItem.id)
-        if(editResult){
+        if (editResult) {
             window.location.reload()
         }
         // TODO: Error Message
@@ -220,6 +220,18 @@ class SolicitacaoTable extends React.Component {
                                                             <Form.Control type="text" placeholder="Valor na nota fiscal" name="valor_nota_fiscal" value={this.state.activeItem.valor_nota_fiscal} onChange={this.handleChange} />
                                                         </Col>
                                                     </Form.Row>
+
+                                                    <hr />
+
+                                                    <p className='text-muted'><i>Status</i></p>
+                                                    <Form.Group>
+                                                        <Form.Control as="select" onChange={this.handleChange} name="status">
+                                                            <option>Escolha o status da solicitação</option>
+                                                            <option value='solicitado'>Solicitado</option>
+                                                            <option value='em-andamento'>Em andamento</option>
+                                                            <option value='entregue'>Entregue</option>
+                                                        </Form.Control>
+                                                    </Form.Group>
                                                     <Button variant="primary" type="submit">Salvar</Button>
                                                 </Form>
                                             </Modal.Body>

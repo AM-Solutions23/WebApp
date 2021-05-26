@@ -1,9 +1,18 @@
-const {Empresa, Solicitacao} = require('../models')
-
+const db = require('../models/index')
 
 const entities = {
-    'empresa': Empresa,
-    'solicitacao': Solicitacao
+    empresa: db.Empresa,
+    carga: db.Carga,
+    clientes: db.Clientes,
+    configuracao: db.Configuracao,
+    empresadistribuicao: db.EmpresaDistribuicao,
+    empresaoperacao: db.EmpresaOperacao,
+    localcoleta: db.LocalColeta,
+    localentrega: db.LocalEntrega,
+    motorista: db.Motorista,
+    operador: db.Operador,
+    solicitacao: db.Solicitacao,
+    veiculo: db.Veiculo
 }
 
 module.exports = class MasterRepository {
@@ -56,17 +65,17 @@ module.exports = class MasterRepository {
     deleteData = async (ID) => {
         let deleted = true
 
-        try{
+        try {
             await this.entity.destroy({
                 where: {
                     id: ID
                 }
             })
-        }catch(deleteError){
+        } catch (deleteError) {
             deleted = false
             throw new Error(`[X] Error on delete a ${this.entity_type}: ${deleteError}`) //development mode
         }
-    
+
         return deleted
     }
 }

@@ -5,6 +5,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import BackgroudImg from '../../../img/backgroundImg.jpg'
 import Logo from '../../../img/logo.jpg';
 import LoginService from '../../../services/login-service';
+import { Button } from 'react-bootstrap'
 
 class SideNavBar extends React.Component {
     constructor(props) {
