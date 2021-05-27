@@ -27,10 +27,26 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
     }
 
     createNewSolicitacao = async (data, request_data) => {
+        let new_cliente = {}
+        let new_local_entrega = {}
+        let new_local_coleta = {}
 
-        const new_cliente = await this.entities.clientes.create(data.cliente_data)
-        const new_local_entrega = await this.entities.localentrega.create(data.local_entrega_data)
-        const new_local_coleta = await this.entities.localcoleta.create(data.local_coleta_data)
+        try {
+            new_cliente = await this.entities.clientes.create(data.cliente_data)
+        } catch (insert_client_error) {
+            //throw new Error(`${insertError}`) //development mode
+            return false
+        }
+        try {
+            new_local_entrega = await this.entities.localentrega.create(data.local_entrega_data)
+        } catch (insert_local_entrega_error) {
+            return false
+        }
+        try {
+            new_local_coleta = await this.entities.localcoleta.create(data.local_coleta_data)
+        } catch (insert_local_coleta_error) {
+            return false
+        }
 
         const solicitacao = {
             id_empresa_operacao: request_data.solicitacao_id_empresa_solicitacao,
@@ -47,7 +63,62 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
             status: request_data.solicitacao_status
         }
 
-        const new_solicitacao = await this.entities.solicitacao.create(solicitacao)
-        return new_solicitacao
+        let new_solicitacao = {}
+        try {
+
+            new_solicitacao = await this.entities.solicitacao.create(solicitacao)
+        } catch (insert_solicitacao_error) {
+            return false
+        }
+        return true
     }
+
+    updateSolicitacao = async (data) => {
+        const solicitacao = await this.getOne(data.cliente_data.id)
+        try {
+            await this.entities.clientes.update(data.cliente_data, {
+                where: {
+                    id: solicitacao.id
+                }
+            })
+        } catch (update_cliente_error) {
+            console.log(update_cliente_error)
+            return false
+        }
+
+        try {
+            await this.entities.localentrega.update(data.local_entrega_data, {
+                where: {
+                    id: solicitacao.id_local_entrega
+                }
+            })
+        } catch (update_local_entrega_error) {
+            console.log(update_entrega_error)
+            return false
+        }
+
+        try {
+            await this.entities.localcoleta.update(data.local_coleta_data, {
+                where: {
+                    id: solicitacao.id_local_coleta
+                }
+            })
+        } catch (update_local_coleta_error) {
+            console.log(update_coleta_error)
+            return false
+        }
+
+        try {
+            await this.entity.update(data.solicitacao_data, {
+                where: {
+                    id: solicitacao.id
+                }
+            })
+        } catch (update_solicitacao_error) {
+            console.log(update_solicitacao_error)
+            return false
+        }
+        return true
+    }
+
 }

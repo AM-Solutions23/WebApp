@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     data_solicitacao: DataTypes.DATE,
     prazo_maximo_entrega: DataTypes.DATE,
     valor_nota_fiscal: DataTypes.STRING,
-    status: DataTypes.BOOLEAN
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Solicitacao',
