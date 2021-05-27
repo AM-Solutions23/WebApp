@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Solicitacao.init({
+    id_empresa_operacao: DataTypes.INTEGER,
     id_empresa_distribuicao: DataTypes.INTEGER,
     id_veiculo: DataTypes.INTEGER,
     id_motorista: DataTypes.INTEGER,

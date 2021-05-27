@@ -122,7 +122,6 @@ router.patch('/solicitacao-status/:id', solicitacao_controllers.updateStatus)
 router.post('/solicitacao-xml', solicitacao_controllers.xmlReader)
 router.get('/solicitacao-estatistica', middleware.authUser, solicitacao_controllers.estatisticasSolicitacoes)
 
-
 /**
 * * Veiculo Routes
 */

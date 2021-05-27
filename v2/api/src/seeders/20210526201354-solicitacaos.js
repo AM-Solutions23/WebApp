@@ -12,6 +12,7 @@ module.exports = {
      * }], {});
     */
    await queryInterface.bulkInsert('Solicitacaos',[{
+     "id_empresa_operacao": 1,
       "id_empresa_distribuicao":1,
       "id_veiculo":1,
       "id_motorista":1,

@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      id_empresa_operacao: {
+        type: Sequelize.INTEGER
+      },
       id_empresa_distribuicao: {
         type: Sequelize.INTEGER
       },

@@ -1,22 +1,23 @@
 const db = require('../models/index')
 
-const entities = {
-    carga: db.Carga,
-    clientes: db.Clientes,
-    configuracao: db.Configuracao,
-    empresadistribuicao: db.EmpresaDistribuicao,
-    empresaoperacao: db.EmpresaOperacao,
-    localcoleta: db.LocalColeta,
-    localentrega: db.LocalEntrega,
-    motorista: db.Motorista,
-    operador: db.Operador,
-    solicitacao: db.Solicitacao,
-    veiculo: db.Veiculo
-}
+
 
 module.exports = class MasterRepository {
     constructor(entity) {
-        this.entity = entities[entity]
+        this.entities = {
+            carga: db.Carga,
+            clientes: db.Clientes,
+            configuracao: db.Configuracao,
+            empresadistribuicao: db.EmpresaDistribuicao,
+            empresaoperacao: db.EmpresaOperacao,
+            localcoleta: db.LocalColeta,
+            localentrega: db.LocalEntrega,
+            motorista: db.Motorista,
+            operador: db.Operador,
+            solicitacao: db.Solicitacao,
+            veiculo: db.Veiculo
+        }
+        this.entity = this.entities[entity]
         this.entity_type = entity
     }
     getAll = async () => {
