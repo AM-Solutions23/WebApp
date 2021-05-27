@@ -9,7 +9,7 @@ module.exports = class MasterController {
     create = async (req, res) => {
         let created = await this.repository.createNew(req.body)
         if (!created) {
-            return res.status(500).json({ 'created':false,'message': `Error creating new ${entity}` })
+            return res.status(500).json({ 'created':false,'message': `Error creating new ${this.entity}` })
         }
         res.status(201).json({ 'created':true,'message': `New ${this.entity} created successfully.` })
     }

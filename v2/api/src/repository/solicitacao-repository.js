@@ -82,7 +82,6 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
                 }
             })
         } catch (update_cliente_error) {
-            console.log(update_cliente_error)
             return false
         }
 
@@ -93,7 +92,6 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
                 }
             })
         } catch (update_local_entrega_error) {
-            console.log(update_entrega_error)
             return false
         }
 
@@ -104,7 +102,6 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
                 }
             })
         } catch (update_local_coleta_error) {
-            console.log(update_coleta_error)
             return false
         }
 
@@ -115,7 +112,6 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
                 }
             })
         } catch (update_solicitacao_error) {
-            console.log(update_solicitacao_error)
             return false
         }
         return true

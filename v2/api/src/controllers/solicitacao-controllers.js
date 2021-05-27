@@ -50,8 +50,11 @@ module.exports = class SolicitacaoControllers extends MasterController {
     }
 
     create = async (req, res) => {
-        
-        const cliente = {
+        console.log(req.body)
+        return res.json({
+            'request': req.body
+        })
+        /*   const cliente = {
             nome: req.body.cliente_nome,
             cep: req.body.cliente_cep,
             endereco: req.body.cliente_endereco,
@@ -80,14 +83,17 @@ module.exports = class SolicitacaoControllers extends MasterController {
             endereco: req.body.local_coleta_endereco,
             numero_endereco: req.body.local_coleta_n_endereco
         }
-        const result = await this.repository.createNewSolicitacao({
+        const created = await this.repository.createNewSolicitacao({
             cliente_data: cliente,
             local_entrega_data: local_entrega,
             local_coleta_data: local_coleta
         },
         req.body)
         
-        res.status(201).json({ 'created':true,'message': `New ${this.entity} created successfully.` })
+        if(!created){
+            return res.status(500).json({ 'created':false,'message': `Error creating new ${this.entity}` })
+        }
+        res.status(201).json({ 'created':true,'message': `New ${this.entity} created successfully.` }) */
     }
 
     update = async(req, res) => {
@@ -134,12 +140,16 @@ module.exports = class SolicitacaoControllers extends MasterController {
             status: req.body.solicitacao_status
         }
 
-        const result = await this.repository.updateSolicitacao({
+        const updated = await this.repository.updateSolicitacao({
             cliente_data:cliente,
             local_entrega_data: local_entrega,
             local_coleta_data: local_coleta,
             solicitacao_data: solicitacao
         })
+
+        if(!updated){
+            return res.status(500).json({ 'updated': false,'message': `Error updating ${this.entity} with ID ${req.params.id}.` })
+        }
         res.status(201).json({ 'updated': true,'message': `${this.entity} with ID: ${req.params.id} updated successfully.` })
     }
 
