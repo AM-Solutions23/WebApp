@@ -4,7 +4,7 @@ module.exports = class VeiculoControllers extends MasterController {
     constructor(){
         super('veiculo')
     }
-
+    
     update = async (req, res) => {
         const ID = req.params.id
       

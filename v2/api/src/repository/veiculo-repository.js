@@ -5,13 +5,17 @@ module.exports = class VeiculoRepository extends MasterRepository{
         super('veiculo')
     }
 
-    getAll = async () => {
-        const veiculo_data = await this.entity.findAll()
+    getAll = async (token) => {
+        const veiculo_data = await this.entity.findAll({
+            where:{
+                id_empresa_operacao: token
+            }
+        })
         let all_data = []
         for(let i = 0; i < veiculo_data.length; i++){
             var empresa = await  this.entities.empresadistribuicao.findOne({
                 where: {
-                    id: veiculo_data[i].id_empresa_distribuicao
+                    id: veiculo_data[i].id_empresa_distribuicao,
                 }
             })
 

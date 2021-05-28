@@ -25,6 +25,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+      id_empresa_operacao: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE

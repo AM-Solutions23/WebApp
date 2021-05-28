@@ -13,6 +13,7 @@ module.exports = {
     */
 
     await queryInterface.bulkInsert('EmpresaDistribuicaos',[{
+      id_empresa_operacao:1,
       cnpj: '0000',
       nome: 'empresa 1',
       inscricao_estadual: '111',

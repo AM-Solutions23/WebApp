@@ -12,6 +12,7 @@ module.exports = {
      * }], {});
     */
    await queryInterface.bulkInsert('Veiculos', [{
+    id_empresa_operacao:1,
      id_empresa_distribuicao: 1,
      tamanho_carroceria: '10x10',
      tipo_caminhao: 'Mercedes',

@@ -14,6 +14,7 @@ module.exports = {
 
     await queryInterface.bulkInsert('Configuracaos', [
       {
+        id_empresa_operacao:1,
         theme_mode: 'dark',
         logomarca: 'logomarca.png'
       }

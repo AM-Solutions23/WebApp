@@ -11,20 +11,24 @@ module.exports = {
       cnpj: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique:true
+        unique: true
       },
       nome: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique:true
+        unique: true
       },
       inscricao_estadual: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique:true
+        unique: true
       },
       cep: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      id_empresa_operacao: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       createdAt: {

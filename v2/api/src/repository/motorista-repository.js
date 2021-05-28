@@ -5,8 +5,13 @@ module.exports = class MotoristaRepository extends MasterRepository {
         super('motorista')
     }
 
-    getAll = async () => {
-        const motoristas_data = await this.entity.findAll()
+    getAll = async (token) => {
+        console.log(token)
+        const motoristas_data = await this.entity.findAll({
+            where: {
+                id_empresa_operacao: token
+            }
+        })
         let all_data = []
         for(let i = 0; i < motoristas_data.length; i++){
             var empresa = await  this.entities.empresadistribuicao.findOne({

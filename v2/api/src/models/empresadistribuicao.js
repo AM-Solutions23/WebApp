@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   EmpresaDistribuicao.init({
+    id_empresa_operacao: DataTypes.INTEGER,
     cnpj: DataTypes.STRING,
     nome: DataTypes.STRING,
     inscricao_estadual: DataTypes.STRING,

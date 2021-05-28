@@ -7,7 +7,7 @@ module.exports = class MasterController {
     }
 
     create = async (req, res) => {
-        let created = await this.repository.createNew(req.body)
+        let created = await this.repository.createNew(req.body,req.token.userID)
         if (!created) {
             return res.status(500).json({ 'created':false,'message': `Error creating new ${this.entity}` })
         }
@@ -15,7 +15,7 @@ module.exports = class MasterController {
     }
 
     readAll = async (req, res) => {
-        const all_data = await this.repository.getAll()
+        const all_data = await this.repository.getAll(req.token.userID)
         res.status(200).json(all_data)
     }
 

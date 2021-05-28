@@ -138,5 +138,6 @@ router.delete('/veiculo/:id', veiculo_controllers.delete)
  */
 const auth_controllers = new AuthControllers()
 router.post('/token-validation', auth_controllers.validateToken)
+router.post('/token-data', auth_controllers.getTokenData)
 
 module.exports = router

@@ -20,8 +20,12 @@ module.exports = class MasterRepository {
         this.entity = this.entities[entity]
         this.entity_type = entity
     }
-    getAll = async () => {
-        const fetched_data = await this.entity.findAll()
+    getAll = async (token) => {
+        const fetched_data = await this.entity.findAll(
+           { where:{
+                id_empresa_operacao: token
+            }}
+        )
         return fetched_data
     }
 
@@ -33,7 +37,8 @@ module.exports = class MasterRepository {
         return fetched_data
     }
 
-    createNew = async (data) => {
+    createNew = async (data, token) => {
+        data.id_empresa_operacao = token
         let inserted = true
         try {
             await this.entity.create(data)

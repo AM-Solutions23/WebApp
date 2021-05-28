@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Configuracao.init({
+    id_empresa_operacao: DataTypes.INTEGER,
     theme_mode: DataTypes.STRING,
     logomarca: DataTypes.STRING
   }, {
