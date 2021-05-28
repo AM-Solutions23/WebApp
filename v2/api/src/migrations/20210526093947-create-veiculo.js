@@ -29,6 +29,10 @@ module.exports = {
         allowNull: false,
         unique:true
       },
+      marca: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

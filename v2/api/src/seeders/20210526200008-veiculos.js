@@ -16,7 +16,8 @@ module.exports = {
      tamanho_carroceria: '10x10',
      tipo_caminhao: 'Mercedes',
      tipo_carroceria: 'bau',
-     placa:'0000-0000'
+     placa:'0000-0000',
+     marca: 'Mercedes'
    }])
   },
 

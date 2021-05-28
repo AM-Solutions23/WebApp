@@ -14,7 +14,8 @@ module.exports = {
 
     await queryInterface.bulkInsert('Motorista', [{
       id_empresa_distribuicao: 1,
-      nome: 'Motorista 1'
+      nome: 'Motorista 1',
+      cnh: '000000'
     }])
   },
 
