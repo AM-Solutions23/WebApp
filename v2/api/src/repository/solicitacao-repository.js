@@ -117,4 +117,133 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
         return true
     }
 
+    getAll = async () => {
+        const solicitacao_data = await this.entity.findAll()
+        let all_data = []
+        for (let i = 0; i < solicitacao_data.length; i++) {
+            var empresa_distribuicao = await this.entities.empresadistribuicao.findOne({
+                where: {
+                    id: solicitacao_data[i].id_empresa_distribuicao
+                }
+            })
+
+            var empresa_operacao = await this.entities.empresaoperacao.findOne({
+                where: {
+                    id: solicitacao_data[i].id_empresa_operacao
+                }
+            })
+
+            var veiculo = await this.entities.veiculo.findOne({
+                where: {
+                    id: solicitacao_data[i].id_veiculo
+                }
+            })
+
+            var motorista = await this.entities.motorista.findOne({
+                where: {
+                    id: solicitacao_data[i].id_motorista
+                }
+            })
+
+            var cliente = await this.entities.clientes.findOne({
+                where: {
+                    id: solicitacao_data[i].id_cliente
+                }
+            })
+
+            var local_entrega = await this.entities.localentrega.findOne({
+                where: {
+                    id: solicitacao_data[i].id_local_entrega
+                }
+            })
+
+            var local_coleta = await this.entities.localcoleta.findOne({
+                where: {
+                    id: solicitacao_data[i].id_local_coleta
+                }
+            })
+
+            all_data.push(Object.assign({}, solicitacao_data[i].dataValues,
+                { empresa_operacao: empresa_operacao },
+                { empresa_distribuicao: empresa_distribuicao },
+                { empresa_distribuicao: empresa_distribuicao },
+                { veiculo: veiculo },
+                { motorista: motorista },
+                { cliente: cliente },
+                { local_entrega: local_entrega },
+                { local_coleta: local_coleta }
+            ))
+        }
+
+
+        return all_data
+    }
+
+    getOne = async (ID) => {
+        const solicitacao_data = await this.entity.findOne(
+            {
+                where: {
+                    id: ID
+                }
+            }
+        )
+        let all_data = []
+
+        var empresa_distribuicao = await this.entities.empresadistribuicao.findOne({
+            where: {
+                id: solicitacao_data.id_empresa_distribuicao
+            }
+        })
+
+        var empresa_operacao = await this.entities.empresaoperacao.findOne({
+            where: {
+                id: solicitacao_data.id_empresa_operacao
+            }
+        })
+
+        var veiculo = await this.entities.veiculo.findOne({
+            where: {
+                id: solicitacao_data.id_veiculo
+            }
+        })
+
+        var motorista = await this.entities.motorista.findOne({
+            where: {
+                id: solicitacao_data.id_motorista
+            }
+        })
+
+        var cliente = await this.entities.clientes.findOne({
+            where: {
+                id: solicitacao_data.id_cliente
+            }
+        })
+
+        var local_entrega = await this.entities.localentrega.findOne({
+            where: {
+                id: solicitacao_data.id_local_entrega
+            }
+        })
+
+        var local_coleta = await this.entities.localcoleta.findOne({
+            where: {
+                id: solicitacao_data.id_local_coleta
+            }
+        })
+
+        all_data.push(Object.assign({}, solicitacao_data.dataValues,
+            { empresa_operacao: empresa_operacao },
+            { empresa_distribuicao: empresa_distribuicao },
+            { empresa_distribuicao: empresa_distribuicao },
+            { veiculo: veiculo },
+            { motorista: motorista },
+            { cliente: cliente },
+            { local_entrega: local_entrega },
+            { local_coleta: local_coleta }
+        ))
+
+
+
+        return all_data
+    }
 }

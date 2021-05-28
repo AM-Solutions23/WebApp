@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "thetracker02",
-    "password": "emalog123456",
+    "password": "emalog1234567",
     "database": "thetracker02",
     "host": "mysql02-farm36.kinghost.net",
     "dialect": "mysql"
