@@ -1,3 +1,8 @@
-const xml_handler = require('../tools/xml-handler')
+fs = require('fs');
+var parser = require('xml2json');
 
-console.log(xml_handler.xmlToObject('<root>Hello xml2js!</root>'))
+const data = fs.readFileSync( '../../public/1622818161677-solicitacao.xml')
+
+var json = parser.toJson(data)
+
+console.log(JSON.parse(json).cteProc.CTe)

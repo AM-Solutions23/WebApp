@@ -1,6 +1,10 @@
-const xml2js = require('xml2js')
+fs = require('fs');
+var parser = require('xml2json');
 
-exports.xmlToObject = async (xml) => {
-    const result = await xml2js.parseStringPromise(xml)
-    return result
+exports.xmlHandler = (filename) => {
+    const data = fs.readFileSync(__dirname + '/uploads/' + filename)
+
+    var json = parser.toJson(data)
+
+    console.log(JSON.parse(json).cteProc.CTe)
 }

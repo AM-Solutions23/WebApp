@@ -1,5 +1,8 @@
-const { xmlToObject } = require("../tools/xml-handler");
+const { xmlToObject, xmlHandler } = require("../tools/xml-handler");
 const MasterController = require("./master-controller");
+const multer = require("multer")
+fs = require('fs');
+var parser = require('xml2json');
 
 module.exports = class SolicitacaoControllers extends MasterController {
     constructor() {
@@ -42,17 +45,34 @@ module.exports = class SolicitacaoControllers extends MasterController {
         res.status(200).json(estatisticas)
     }
     xmlReader = async (req, res) => {
-        console.log(req)
-        /*  const xml_in_object = await xmlToObject(req.files.xml)
- 
-         console.log(xml_in_object) */
+        const filename = Date.now() + '-' +'solicitacao.xml'
 
-        res.sendStatus(200)
+        var storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+                cb(null, 'src/tools/uploads')
+            },
+            filename: function (req, file, cb) {
+                cb(null, filename )
+            }
+        })
+
+        var upload = multer({ storage: storage }).single('file')
+        upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                console.log(err)
+                return res.status(500).json(err)
+            } else if (err) {
+                console.log(err)
+                return res.status(500).json(err)
+            }
+            xmlHandler(filename)
+        })
+
     }
 
     create = async (req, res) => {
 
-           const cliente = {
+        const cliente = {
             nome: req.body.cliente_nome,
             cep: req.body.cliente_cep,
             endereco: req.body.cliente_end,
@@ -63,7 +83,7 @@ module.exports = class SolicitacaoControllers extends MasterController {
             numero_telefone: req.body.cliente_contato,
             documento: req.body.cliente_documento
         }
-        
+
         const local_entrega = {
             cep: req.body.local_entrega_cep,
             nome: req.body.local_entrega_nome,
@@ -86,15 +106,15 @@ module.exports = class SolicitacaoControllers extends MasterController {
             local_entrega_data: local_entrega,
             local_coleta_data: local_coleta
         },
-        req.body,req.token.userID)
-        
-        if(!created){
-            return res.status(500).json({ 'created':false,'message': `Error creating new ${this.entity}` })
+            req.body, req.token.userID)
+
+        if (!created) {
+            return res.status(500).json({ 'created': false, 'message': `Error creating new ${this.entity}` })
         }
-        res.status(201).json({ 'created':true,'message': `New ${this.entity} created successfully.` }) 
+        res.status(201).json({ 'created': true, 'message': `New ${this.entity} created successfully.` })
     }
 
-    update = async(req, res) => {
+    update = async (req, res) => {
         const cliente = {
             nome: req.body.cliente_nome,
             cep: req.body.cliente_cep,
@@ -106,7 +126,7 @@ module.exports = class SolicitacaoControllers extends MasterController {
             numero_telefone: req.body.cliente_contato,
             documento: req.body.cliente_documento
         }
-        
+
         const local_entrega = {
             cep: req.body.local_entrega_cep,
             nome: req.body.local_entrega_nome,
@@ -126,7 +146,7 @@ module.exports = class SolicitacaoControllers extends MasterController {
         }
 
         const solicitacao = {
-            id:req.params.id,
+            id: req.params.id,
             id_empresa_operacao: req.body.empresa_operacao,
             id_empresa_distribuicao: req.body.solicitacao_empresa,
             id_veiculo: req.body.solicitacao_veiculo,
@@ -139,16 +159,32 @@ module.exports = class SolicitacaoControllers extends MasterController {
         }
 
         const updated = await this.repository.updateSolicitacao({
-            cliente_data:cliente,
+            cliente_data: cliente,
             local_entrega_data: local_entrega,
             local_coleta_data: local_coleta,
             solicitacao_data: solicitacao
         })
-        console.log(updated)
-        if(!updated){
-            return res.status(500).json({ 'updated': false,'message': `Error updating ${this.entity} with ID ${req.params.id}.` })
+
+        if (!updated) {
+            return res.status(500).json({ 'updated': false, 'message': `Error updating ${this.entity} with ID ${req.params.id}.` })
         }
-        res.status(201).json({ 'updated': true,'message': `${this.entity} with ID: ${req.params.id} updated successfully.` })
+        res.status(201).json({ 'updated': true, 'message': `${this.entity} with ID: ${req.params.id} updated successfully.` })
+    }
+
+    solicitado = async (req, res) => {
+        const solicitados = await this.repository.getByStatus(req.token.userID, 'solicitado')
+
+        res.status(200).json(solicitados)
+    }
+    em_andamento = async (req, res) => {
+        const em_andamentos = await this.repository.getByStatus(req.token.userID, 'em-andamento')
+
+        res.status(200).json(em_andamentos)
+    }
+    entregue = async (req, res) => {
+        const entregues = await this.repository.getByStatus(req.token.userID, 'entregue')
+
+        res.status(200).json(entregues)
     }
 
 }

@@ -115,6 +115,11 @@ router.delete('/operador/:id', operador_controllers.delete)
 const solicitacao_controllers = new SolicitacaoControllers()
 router.post('/solicitacao', solicitacao_controllers.create)
 router.get('/solicitacao', solicitacao_controllers.readAll)
+
+router.get('/solicitacao-solicitado', solicitacao_controllers.solicitado)
+router.get('/solicitacao-em-andamento', solicitacao_controllers.em_andamento)
+router.get('/solicitacao-entregue', solicitacao_controllers.entregue)
+
 router.get('/solicitacao/:id', solicitacao_controllers.readOne)
 router.put('/solicitacao/:id', solicitacao_controllers.update)
 router.delete('/solicitacao/:id', solicitacao_controllers.delete)
@@ -122,6 +127,7 @@ router.patch('/solicitacao-status/:id', solicitacao_controllers.updateStatus)
 router.post('/solicitacao-xml', solicitacao_controllers.xmlReader)
 router.get('/solicitacao-estatistica', middleware.authUser, solicitacao_controllers.estatisticasSolicitacoes)
 
+router.post('/solicitacao-upload', solicitacao_controllers.xmlReader)
 /**
 * * Veiculo Routes
 */
