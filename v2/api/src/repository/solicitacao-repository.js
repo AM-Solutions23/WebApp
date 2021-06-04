@@ -23,8 +23,25 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
             limit: 6
         })
 
+        const n_solicitacoes_solicitadas = await this.entity.count({
+            where: {
+                status: 'solicitado'
+            }
+        })
+
+        const n_solicitacoes_em_andamento = await this.entity.count({
+            where: {
+                status: 'em-andamento'
+            }
+        })
+
+        const n_solicitacoes_concluido = await this.entity.count({
+            where: {
+                status: 'entregue'
+            }
+        })
         return {
-            solicitados, em_andamento
+            solicitados, em_andamento, n_solicitacoes_concluido, n_solicitacoes_em_andamento, n_solicitacoes_solicitadas
         }
     }
 

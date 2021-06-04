@@ -44,6 +44,7 @@ module.exports = class SolicitacaoControllers extends MasterController {
         const estatisticas = await this.repository.estatisticas(req.token.userID)
         res.status(200).json(estatisticas)
     }
+    
     xmlReader = async (req, res) => {
         let repository = this.repository
 
