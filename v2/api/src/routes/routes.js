@@ -116,9 +116,9 @@ const solicitacao_controllers = new SolicitacaoControllers()
 router.post('/solicitacao', solicitacao_controllers.create)
 router.get('/solicitacao', solicitacao_controllers.readAll)
 
-router.get('/solicitacao-solicitado', solicitacao_controllers.solicitado)
-router.get('/solicitacao-em-andamento', solicitacao_controllers.em_andamento)
-router.get('/solicitacao-entregue', solicitacao_controllers.entregue)
+router.get('/solicitacao-solicitado', middleware.authUser,solicitacao_controllers.solicitado)
+router.get('/solicitacao-em-andamento', middleware.authUser,solicitacao_controllers.em_andamento)
+router.get('/solicitacao-entregue', middleware.authUser,solicitacao_controllers.entregue)
 
 router.get('/solicitacao/:id', solicitacao_controllers.readOne)
 router.put('/solicitacao/:id', solicitacao_controllers.update)
