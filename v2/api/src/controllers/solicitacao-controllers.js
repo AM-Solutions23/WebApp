@@ -45,6 +45,8 @@ module.exports = class SolicitacaoControllers extends MasterController {
         res.status(200).json(estatisticas)
     }
     xmlReader = async (req, res) => {
+        let repository = this.repository
+
         const filename = Date.now() + '-' +'solicitacao.xml'
 
         var storage = multer.diskStorage({
@@ -57,7 +59,7 @@ module.exports = class SolicitacaoControllers extends MasterController {
         })
 
         var upload = multer({ storage: storage }).single('file')
-        upload(req, res, function (err) {
+        upload(req, res, async function (err) {
             if (err instanceof multer.MulterError) {
                 console.log(err)
                 return res.status(500).json(err)
@@ -65,7 +67,12 @@ module.exports = class SolicitacaoControllers extends MasterController {
                 console.log(err)
                 return res.status(500).json(err)
             }
-            xmlHandler(filename)
+            const data_parsed = xmlHandler(filename,req.token.userID)
+
+            const created = await repository.createNewSolicitacaoXML(data_parsed)
+    
+         
+            res.sendStatus(201)
         })
 
     }

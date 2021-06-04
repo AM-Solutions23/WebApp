@@ -6,7 +6,7 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
         super('solicitacao')
     }
 
-     estatisticas = async (token) => {
+    estatisticas = async (token) => {
         const solicitados = await this.entity.findAll({
             where: {
                 'status': 'solicitado',
@@ -26,7 +26,7 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
         return {
             solicitados, em_andamento
         }
-    } 
+    }
 
 
     createNewSolicitacao = async (data, request_data, token) => {
@@ -78,13 +78,48 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
         return true
     }
 
+    createNewSolicitacaoXML = async (data) => {
+        let new_cliente = {}
+        let new_local_entrega = {}
+        let new_local_coleta = {}
+        try {
+            new_cliente = await this.entities.clientes.create(data.cliente_data)
+        } catch (insertError) {
+            throw new Error(`${insertError}`) //development mode
+            return false
+        }
+        try {
+            new_local_entrega = await this.entities.localentrega.create(data.local_entrega_data)
+        } catch (insertError) {
+            throw new Error(`${insertError}`) //development mode
+            return false
+        }
+        try {
+            new_local_coleta = await this.entities.localcoleta.create(data.local_coleta_data)
+        } catch (insertError) {
+            throw new Error(`${insertError}`) //development mode
+            return false
+        }
+
+        data.solicitacao_data.id_cliente = new_cliente.id
+        data.solicitacao_data.id_local_coleta = new_local_coleta.id
+        data.solicitacao_data.id_local_entrega = new_local_entrega.id
+        
+        try {
+
+            new_solicitacao = await this.entities.solicitacao.create(data.solicitacao_data)
+        } catch (insert_solicitacao_error) {
+            return false
+        }
+        return true
+    }
     updateSolicitacao = async (data) => {
         const solicitacao = await this.getOne(data.solicitacao_data.id)
-        if(data.solicitacao_data.status ==  'entregue'){
+        if (data.solicitacao_data.status == 'entregue') {
             data.solicitacao_data.data_entrega = new Date().toISOString()
         }
 
-         try {
+        try {
             await this.entities.clientes.update(data.cliente_data, {
                 where: {
                     id: solicitacao[0].id_cliente
@@ -123,7 +158,7 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
             })
         } catch (update_solicitacao_error) {
             return false
-        } 
+        }
         return true
     }
 
@@ -131,7 +166,7 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
         const solicitacao_data = await this.entity.findAll(
             {
                 where: {
-                    id_empresa_operacao:token,
+                    id_empresa_operacao: token,
                 }
             }
         )
@@ -199,7 +234,7 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
         const solicitacao_data = await this.entity.findAll(
             {
                 where: {
-                   id_empresa_operacao:token, 
+                    id_empresa_operacao: token,
                     status: status
                 }
             }
