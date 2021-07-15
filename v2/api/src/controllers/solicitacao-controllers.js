@@ -10,7 +10,9 @@ module.exports = class SolicitacaoControllers extends MasterController {
   }
 
   update = async (req, res) => {
-    const solicitacao = await this.repository.getOne(req.params.id);
+    let solicitacao = await this.repository.getOne(req.params.id);
+
+    solicitacao = solicitacao[0];
 
     if (
       solicitacao.status == "em-andamento" ||
@@ -37,9 +39,9 @@ module.exports = class SolicitacaoControllers extends MasterController {
   updateStatus = async (req, res) => {
     if (
       !(
-        req.body.status == "em-andamento" ||
-        req.body.status == "entregue" ||
-        req.body.status == "solicitado"
+        req.body.solicitacao.status == "em-andamento" ||
+        req.body.solicitacao.status == "entregue" ||
+        req.body.solicitacao.status == "solicitado"
       )
     ) {
       return res

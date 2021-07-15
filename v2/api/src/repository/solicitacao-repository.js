@@ -50,15 +50,62 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
 
   updateData = async (ID, data) => {
     let edited = true;
-    if (data.status == "entregue") {
-      data.data_entrega = new Date().toISOString();
+    if (data.solicitacao.status == "entregue") {
+      data.solicitacao.data_entrega = new Date().toISOString();
     }
 
     try {
-      await this.entity.update(data, {
+      await this.entity.update(data.solicitacao, {
         where: {
           id: ID,
         },
+      });
+
+      data.solicitacao.cargas.forEach(async (carga) => {
+        carga = carga[0];
+        try {
+          await this.entities.carga.update(carga, {
+            where: {
+              id: carga.id,
+            },
+          });
+
+          data.solicitacao.coletas.forEach(async (coleta) => {
+            coleta = coleta[0];
+            try {
+              await this.entities.coleta.update(coleta, {
+                where: {
+                  id: coleta.id,
+                },
+              });
+              data.solicitacao.notas.forEach(async (nota) => {
+                nota = nota[0];
+                try {
+                  await this.entities.nota.update(nota, {
+                    where: {
+                      id: nota.id,
+                    },
+                  });
+                } catch (updateError) {
+                  edited = false;
+                  throw new Error(
+                    `[X] Error on edit a ${this.entity_type}: ${updateError}`
+                  ); //development mode
+                }
+              });
+            } catch (updateError) {
+              edited = false;
+              throw new Error(
+                `[X] Error on edit a ${this.entity_type}: ${updateError}`
+              ); //development mode
+            }
+          });
+        } catch (updateError) {
+          edited = false;
+          throw new Error(
+            `[X] Error on edit a ${this.entity_type}: ${updateError}`
+          ); //development mode
+        }
       });
     } catch (updateError) {
       edited = false;
@@ -109,6 +156,12 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
         },
       });
 
+      var NotasSolicitacao = await this.entities.solicitacaoNota.findAll({
+        where: {
+          id_solicitacao: solicitacao_data[i].id,
+        },
+      });
+
       var coletas = [];
       for (let j = 0; j < ColetasSolicitacao.length; j++) {
         var coleta = await this.entities.coleta.findAll({
@@ -122,7 +175,7 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
 
       var cargas = [];
       for (let j = 0; j < CargasSolicitacao.length; j++) {
-        var carga = await this.entities.coleta.findAll({
+        var carga = await this.entities.carga.findAll({
           where: {
             id: CargasSolicitacao[j].id_carga,
           },
@@ -132,6 +185,15 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
       }
 
       var notas = [];
+      for (let j = 0; j < NotasSolicitacao.length; j++) {
+        var nota = await this.entities.nota.findAll({
+          where: {
+            id: NotasSolicitacao[j].id_nota,
+          },
+        });
+
+        notas.push(nota);
+      }
 
       all_data.push(
         Object.assign(
@@ -194,6 +256,12 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
       },
     });
 
+    var NotasSolicitacao = await this.entities.solicitacaoNota.findAll({
+      where: {
+        id_solicitacao: solicitacao_data.id,
+      },
+    });
+
     var coletas = [];
     for (let j = 0; j < ColetasSolicitacao.length; j++) {
       var coleta = await this.entities.coleta.findAll({
@@ -216,6 +284,17 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
       cargas.push(carga);
     }
 
+    var notas = [];
+    for (let j = 0; j < NotasSolicitacao.length; j++) {
+      var nota = await this.entities.nota.findAll({
+        where: {
+          id: NotasSolicitacao[j].id_nota,
+        },
+      });
+
+      notas.push(nota);
+    }
+
     all_data.push(
       Object.assign(
         {},
@@ -224,6 +303,7 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
         { veiculo: veiculo },
         { coletas: coletas },
         { cargas: cargas },
+        { notas: notas },
         { motorista: motorista }
       )
     );
@@ -273,45 +353,38 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
     return all_data;
   };
 
-  saveColeta = async (token, coleta) => {
-    let saved_coleta = await this.repository.coleta.createNew(coleta, token);
-
-    return saved_coleta;
-  };
-
   createNew = async (data, token) => {
     data.id_empresa_operacao = token;
     let inserted = true;
     try {
       let info_inserted = await this.entity.create(data);
 
-      data.coletas.forEach(async (coleta) => {
+      data;
+      try {
+        const coleta_save = await this.entities.coleta.create(coleta);
+
+        const solicitacaoColetaVal = {
+          id_coleta: coleta_save.id,
+          id_solicitacao: info_inserted.id,
+        };
+
         try {
-          const coleta_save = await this.entities.coleta.create(coleta);
-
-          const solicitacaoColetaVal = {
-            id_coleta: coleta_save.id,
-            id_solicitacao: info_inserted.id,
-          };
-
-          try {
-            let solicitacao_coleta =
-              await this.entities.solicitacaoColeta.create(
-                solicitacaoColetaVal
-              );
-          } catch (insertError) {
-            inserted = false;
-            throw new Error(
-              `[X] Error on create a new ${this.entity_type}: ${insertError}`
-            ); //development mode
-          }
+          let solicitacao_coleta = await this.entities.solicitacaoColeta.create(
+            solicitacaoColetaVal
+          );
         } catch (insertError) {
           inserted = false;
           throw new Error(
             `[X] Error on create a new ${this.entity_type}: ${insertError}`
           ); //development mode
         }
-      });
+      } catch (insertError) {
+        inserted = false;
+        throw new Error(
+          `[X] Error on create a new ${this.entity_type}: ${insertError}`
+        ); //development mode
+      }
+      data;
 
       data.cargas.forEach(async (carga) => {
         try {
@@ -326,6 +399,34 @@ module.exports = class SolicitacaoRepository extends MasterRepository {
             let solicitacao_carga = await this.entities.solicitacaoCarga.create(
               solicitacaoCargaVal
             );
+
+            data.notas.forEach(async (nota) => {
+              try {
+                const nota_save = await this.entities.nota.create(nota);
+
+                const solicitacaoNotaVal = {
+                  id_nota: nota_save.id,
+                  id_solicitacao: info_inserted.id,
+                };
+
+                try {
+                  let solicitacao_nota =
+                    await this.entities.solicitacaoNota.create(
+                      solicitacaoNotaVal
+                    );
+                } catch (insertError) {
+                  inserted = false;
+                  throw new Error(
+                    `[X] Error on create a new ${this.entity_type}: ${insertError}`
+                  ); //development mode
+                }
+              } catch (insertError) {
+                inserted = false;
+                throw new Error(
+                  `[X] Error on create a new ${this.entity_type}: ${insertError}`
+                ); //development mode
+              }
+            });
           } catch (insertError) {
             inserted = false;
             throw new Error(

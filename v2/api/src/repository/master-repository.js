@@ -9,6 +9,8 @@ module.exports = class MasterRepository {
       solicitacaoColeta: db.SolicitacaoColeta,
       carga: db.Carga,
       solicitacaoCarga: db.SolicitacaoCarga,
+      nota: db.Notas,
+      solicitacaoNota: db.SolicitacaoNotas,
       configuracao: db.Configuracao,
       empresadistribuicao: db.EmpresaDistribuicao,
       empresaoperacao: db.EmpresaOperacao,
